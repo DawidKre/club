@@ -8,7 +8,6 @@ api_game_player:
     type: rest
     prefix: /api
     resource: "@ClubGameBundle/Controller/Api/PlayerController.php"
-    methods: [POST]
 api_game_position:
     type: rest
     prefix: /api
@@ -17,7 +16,6 @@ api_game_team:
     type: rest
     prefix: /api
     resource: "@ClubGameBundle/Controller/Api/TeamController.php"
-    methods: [POST]
 api_game_assists:
     type: rest
     prefix: /api
