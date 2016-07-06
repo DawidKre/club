@@ -1,0 +1,67 @@
+default:
+  translation:
+      locale: en
+  formatters:
+      pretty: true
+      progress: true
+  suites:
+      default:
+          paths: [ '%paths.base%/features' ]
+          contexts:
+              - FeatureContext
+              - WebFeatureContext
+              - UserFeatureContext
+              - ApiFeatureContext
+              - Behat\MinkExtension\Context\MinkContext
+              - Fidry\AliceBundleExtension\Context\Doctrine\AliceORMContext
+      api:
+          paths: [ '%paths.base%/features/Api' ]
+          contexts:  
+              - Behat\MinkExtension\Context\MinkContext
+              #- Behat\WebApiExtension\Context\WebApiContext
+              - FeatureContext
+              - WebFeatureContext
+              - GameFeatureContext
+              - UserFeatureContext
+              - ApiFeatureContext
+              #- Knp\FriendlyContexts\Context\ApiContext
+              #- behatch:browser
+              - behatch:debug
+              #- behatch:system
+              - behatch:json
+              - behatch:table
+              - behatch:rest
+              #- behatch:xml
+                       
+  extensions:
+      Behat\Symfony2Extension: ~
+      Sanpi\Behatch\Extension: ~
+      Behat\WebApiExtension: 
+          base_url: http://localhost:8000/app_test.php/
+      Knp\FriendlyContexts\Extension: 
+          api:
+              base_url: http://localhost:8000/app_test.php
+          symfony_kernel:
+              bootstrap: app/autoload.php
+              path: app/AppKernel.php
+              class: AppKernel
+              env: test
+              debug: true
+      #Behat\WebApiExtension: ~
+      Behat\MinkExtension:
+          base_url: http://localhost:8000/app_test.php/
+          goutte: ~
+          show_cmd: 'open %s'
+          selenium2: ~
+#              browser: chrome
+#              capabilities:
+#                  browserName: chrome
+#                  browser: chrome
+#                  version: ""
+#                  chrome:
+#                      switches:
+#                          - "start-fullscreen"
+#                          - "start-maximized"
+#                          - "no-sandbox"
+      Fidry\AliceBundleExtension\Extension:
+          fixtures_base_path: ~ # default to %paths.base%/features/fixtures

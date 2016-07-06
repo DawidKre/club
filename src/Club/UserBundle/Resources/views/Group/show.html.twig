@@ -1,0 +1,8 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+{% set pageTitle = 'Pokaż' %}
+{% block pageTitle %}
+    {{ pageTitle }} {{ parent() }}
+{% endblock %}
+{% block fos_user_content %}
+    {% include "FOSUserBundle:Group:show_content.html.twig" %}
+{% endblock fos_user_content %}

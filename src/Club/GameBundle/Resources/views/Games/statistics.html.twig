@@ -1,0 +1,106 @@
+{% extends 'ClubBlogBundle::layout.html.twig' %}
+
+{% block pageTitle %}
+    {{ siteTitle }} {{ parent() }}
+{% endblock %}
+
+{% block newsBar %}
+    {{ print_news_bar() }}
+{% endblock %}
+
+{% block body %}
+    <div class="kopa-main-col">
+        <div class="kopa-breadcrumb">
+            <div class="wrapper clearfix">
+                <span itemtype="http://data-vocabulary.org/Breadcrumb" itemscope="">
+                    <a itemprop="url" href="fixtures-results.html#">
+                        <span itemprop="title">Home</span>
+                    </a>
+                </span>
+                    &nbsp;|&nbsp;
+                <span itemtype="http://data-vocabulary.org/Breadcrumb" itemscope="">
+                    <a itemprop="url" class="current-page">
+                        <span itemprop="title">{{ siteTitle }}</span>
+                    </a>
+                </span>
+            </div>
+        </div>
+        <div class="tab-content ft-tab-content mb-30">
+            <!-- tab-pane -->
+            <div class="tab-pane active" id="table">
+                <div class="widget kopa-charts-widget">
+                    <h3 class="widget-title style17">Statystyki zawodników sezon: {{ playersStats.0.season.name }}</h3>
+                    <div class="widget-content">
+                        <header>
+                            <div class="t-col width3">Lp.</div>
+                            <div class="t-col width2">
+                                {% if ((app.request.query.get('orderDir') == 'DESC') and (app.request.query.get('orderBy') == 'player.name')) %}
+                                    <a href="{{ path('game_games_statistics',{'orderBy': 'player.name' , 'orderDir':'ASC'}) }}">
+                                        Imię i nazwisko <i class="fa fa-arrow-up"></i>
+                                    </a>
+                                {% elseif (app.request.query.get('orderDir') == 'ASC') and(app.request.query.get('orderBy') == 'player.name') %}
+                                    <a href="{{ path('game_games_statistics',{'orderBy':  'player.name' , 'orderDir': 'DESC'}) }}">
+                                        Imię i nazwisko <i class="fa fa-arrow-down"></i>
+                                    </a>
+                                {% else %}
+                                    <a href="{{ path('game_games_statistics',{'orderBy': 'player.name' , 'orderDir': 'DESC'}) }}">
+                                        Imię i nazwisko
+                                    </a>
+                                {% endif %}
+                            </div>
+                            <div class="t-col width2 ">
+                                {% if (app.request.query.get('orderDir') == 'DESC') and (app.request.query.get('orderBy') == 'position.positionOrder') %}
+                                    <a href="{{ path('game_games_statistics',{'orderBy': 'position.positionOrder' , 'orderDir': 'ASC'}) }}">
+                                        Pozycja <i class="fa fa-arrow-up"></i>
+                                    </a>
+                                {% elseif (app.request.query.get('orderDir') == 'ASC') and (app.request.query.get('orderBy') == 'position.positionOrder') %}
+                                    <a href="{{ path('game_games_statistics', {'orderBy':  'position.positionOrder' , 'orderDir': 'DESC'}) }}">
+                                        Pozycja <i class="fa fa-arrow-down"></i>
+                                    </a>
+                                {% else %}
+                                    <a href="{{ path('game_games_statistics', {'orderBy': 'position.positionOrder' , 'orderDir': 'DESC'}) }}">
+                                        Pozycja
+                                    </a>
+                                {% endif %}
+                            </div>
+                            {% for key,value in orders %}
+                                <div class="t-col width3">
+                                    {% if (app.request.query.get('orderDir') == 'DESC') and(app.request.query.get('orderBy') == key) %}
+                                        <a href="{{ path('game_games_statistics',{'orderBy': key , 'orderDir': 'ASC'}) }}">
+                                            {{ value }} <i class="fa fa-arrow-up"></i>
+                                        </a>
+                                    {% elseif (app.request.query.get('orderDir') == 'ASC') and (app.request.query.get('orderBy') == key) %}
+                                        <a href="{{ path('game_games_statistics',{'orderBy':  key , 'orderDir': 'DESC'}) }}">
+                                            {{ value }} <i class="fa fa-arrow-down"></i>
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ path('game_games_statistics', {'orderBy': key , 'orderDir': 'DESC'}) }}">
+                                            {{ value }}
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </header>
+                        {% set i = 1 %}
+                        {% for player in playersStats %}
+                            <ul class="clearfix">
+                                <li>
+                                    <div class="t-col width3">{{ i }}</a></div>
+                                    <div class="t-col width2">{{ player.player.name|truncate(16,true, ".") }}</div>
+                                    <div class="t-col width2 ">{{ player.player.position.name }}</div>
+                                    <div class="t-col width3 ">{{ player.matches }}</div>
+                                    <div class="t-col width3 ">{{ player.goals }}</div>
+                                    <div class="t-col width3 ">{{ player.assists }}</div>
+                                    <div class="t-col width3 ">{{ player.yellowCards }}</div>
+                                    <div class="t-col width3 ">{{ player.redCards }}</div>
+                                </li>
+                            </ul>
+                            {% set i = i+1 %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <!-- tab-pane -->
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'ClubBlogBundle::layout.html.twig' %}
+
+{% block pageTitle %}
+    Kadra {{ team }} {{ parent() }}
+{% endblock %}
+
+{% block newsBar %}
+    {{ print_news_bar() }}
+{% endblock %}
+
+{% block body %}
+    <div class="kopa-main-col">
+        <div class="kopa-breadcrumb">
+            <div class="wrapper clearfix">
+                <span itemtype="http://data-vocabulary.org/Breadcrumb" itemscope="">
+                    <a itemprop="url" href="{{ path('blog_posts_index') }}">
+                        <span itemprop="title">Home</span>
+                    </a>
+                </span>
+                    &nbsp;|&nbsp;
+                <span itemtype="http://data-vocabulary.org/Breadcrumb" itemscope="">
+                    <a itemprop="url" class="current-page">
+                        <a itemprop="url" href="{{ path('game_club_info', {'slug': slug }) }}">
+                            <span itemprop="title">{{ team }}</span>
+                        </a>
+                    </a>
+                </span>
+                    &nbsp;|&nbsp;
+                <span itemtype="http://data-vocabulary.org/Breadcrumb" itemscope="">
+                    <a itemprop="url" class="current-page">
+                        <span itemprop="title">Kadra</span>
+                    </a>
+                </span>
+            </div>
+        </div>
+        <!--/end .breadcrumb-->
+        <!-- tab-pane -->
+        <div class="kopa-entry-post">
+            <article class="entry-item">
+                <h3 class="element-title">Kadra<span class="ttg"></span></h3>
+                <h4 class="entry-title">{{ team }}</h4>
+                <div class="tab-pane active" id="table">
+                    <div class="widget kopa-charts-widget">
+                        <div class="widget-content">
+                            {% if cadre %}
+                                <header>
+                                    <div class="t-col width3">Lp.</div>
+                                    <div class="t-col width2">Imię i nazwisko</div>
+                                    <div class="t-col width2 tbl-col">Pozycja</div>
+                                    <div class="t-col width2 tbl-col">Data urodzenia</div>
+                                    <div class="t-col width3 tbl-col">Numer</div>
+                                </header>
+                                <ul class="clearfix">
+                                {% set i = 1 %}
+                                {% for player in cadre %}
+                                    <li>
+                                        <div class="t-col width3">{{ i }}</div>
+                                        <a href="{{ path('game_player_info', {'slug': player.player.slug }) }}">
+                                            <div class="t-col width2">{{ player.player.name }}</div>
+                                        </a>
+                                        <div class="t-col width2 tbl-col">{{ player.positionName }}</div>
+                                        <div class="t-col width2 tbl-col">{{ player.player.bornDate| date('Y/m/d') }}</div>
+                                        {% if (player.player.number) != NULL %}
+                                            <div class="t-col width3 tbl-col">{{ player.player.number }}</div>
+                                        {% else %}
+                                            <div class="t-col width3 tbl-col"> -</div>
+                                        {% endif %}
+                                    </li>
+                                    {% set i = i+1 %}
+                                {% endfor %}
+                                {% else %}
+                                    <li>
+                                        <span class="entry-title">Brak zawodników w kadrze</span>
+                                    </li>
+                            {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' ,'novalidate': 'novalidate'} }) }}
+
+{{ form_widget(form) }}
+
+<div class="col-md-8 col-sm-8 col-xs-8">
+    <p class="contact-button clearfix ">
+        <span> <input type="submit" id="submit-contact" value="{{ 'profile.edit.submit'|trans }}"/></span>
+    </p>
+</div>
+{{ form_end(form) }}
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+{{ render(controller('FOSUserBundle:ChangePassword:changePassword')) }}
+</div>

@@ -1,0 +1,7 @@
+{% for type, messages in app.session.flashbag.all() %}
+    {% for message in messages %}
+        <div class="kopa-alert alert alert-{{ type }} alert-dismissable">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}

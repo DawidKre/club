@@ -1,0 +1,28 @@
+{% extends 'ClubBlogBundle::layout.html.twig' %}
+
+{% set sidebar = true %}
+
+{% block pageTitle %}
+    Błąd 404
+{% endblock %}
+
+{% block body %}
+    <section class="error-404 clearfix">
+        <div class="left-col">
+            <p>500</p>
+        </div><!--left-col-->
+        <div class="right-col">
+            <h1>Nie znany bład</h1>
+            <p>We're sorry, but we can't find the page you were looking for. It's probably some thing we've done wrong
+                but now we know about it we'll try to fix it. In the meantime, try one of these options:</p>
+            <ul class="arrow-list">
+                {#{#<li>#}{#
+                    #}{#<a href="{{ path('blog_posts_index') }}">Go back to previous page</a>#}{#
+                #}{#</li>#}
+                <li>
+                    <a href="{{ path('blog_posts_index') }}">Go to homepage</a>
+                </li>
+            </ul>
+        </div><!--right-col-->
+    </section>
+{% endblock %}

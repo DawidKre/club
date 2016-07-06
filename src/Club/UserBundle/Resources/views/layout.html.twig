@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% block head %}
+    <head>
+        <meta charset="utf-8">
+        <title>{% spaceless %}{% block pageTitle %}{% endblock %}{% endspaceless %} | Draco Kowala</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="{% spaceless %}{% block pageDescription %}{% endblock %}{% endspaceless %}">
+        <meta name="author" content="">
+
+        {% block stylesheets %}
+            <link rel="stylesheet" type="text/css" href="{{ asset('public/css/packages.css') }}" media="all"/>
+            <link rel="stylesheet" type="text/css" href="{{ asset('public/main.css') }}" media="all"/>
+        {% endblock %}
+
+        <script src="{{ asset('public/js/modernizr.custom.js') }}"></script>
+
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" href="../public/css/ie.css" type="text/css" media="all"/>
+        <![endif]-->
+
+        <!--[if IE 9]>
+        <link rel="stylesheet" href="../public/css/ie9.css" type="text/css" media="all"/>
+        <![endif]-->
+
+        <!-- Le fav and touch icons -->
+        <link rel="shortcut icon" href="{{ asset('public/images/draco.png') }}">
+    </head>
+{% endblock %}
+<body class="kopa-home-page">
+
+<header class="kopa-header style2">
+
+{% include '@ClubBlog/Template/navigation.html.twig' %}
+
+</header>
+<!-- kopa-page-header -->
+<div id="main-content"> <!--class="style1"-->
+{% block slider %}
+{% endblock slider %}
+    <!-- wrapper -->
+    <div class="wrapper">
+
+{% block newsBar %}
+    {{ print_news_bar() }}
+{% endblock %}
+        <div class="row">
+            <!-- main-top -->
+            <div class="kopa-main-col">
+                <div class="row">
+                    <div class=" col-md-12 col-sm-12 col-xs-12">
+                        <div class="kopa-breadcrumb">
+                            <div class="wrapper clearfix">
+                            <span itemtype="http://data-vocabulary.org/Breadcrumb" itemscope="">
+                                <a itemprop="url" href="{{ path('blog_posts_index') }}">
+                                    <span itemprop="title">News</span>
+                                </a>
+                            </span>
+                                &nbsp;|&nbsp;
+                            <span itemtype="http://data-vocabulary.org/Breadcrumb" itemscope="">
+                                <a itemprop="url" class="current-page">
+                                    <span itemprop="title">{{ pageTitle }}</span>
+                                </a>
+                            </span>
+                            </div>
+                        </div>
+                        <div class="widget-area-1">
+                            <!-- widget -->
+                            <div class="widget ">
+                                <h3 class="widget-title style12">{{ pageTitle }}<span class="ttg"></span></h3>
+                                <ul class="clearfix">
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="contact-box">
+                            {% if app.request.hasPreviousSession %}
+                                {% for type, messages in app.session.flashbag.all() %}
+                                    {% for message in messages %}
+                                        <div class="col-md-8 col-sm-8 col-xs-8">
+                                            <div class="kopa-alert alert alert-{{ type }} alert-dismissable">
+                                                {{ message }}
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% endfor %}
+                            {% endif %}
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                    <p class="input-label">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
+                                        |
+                                        <a href="{{ path('fos_user_security_logout') }}">
+                                            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                        </a>
+                                        <div class="img-thumbnail" style="max-width: 150px; max-height: 150px;">
+                                            <img src="/{{ app.user.avatar }}" alt="">
+                                        </div>
+                                    </p>
+                                {% else %}
+                                {% endif %}
+                            </div>
+                            {% block fos_user_content %}
+                            {% endblock fos_user_content %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- main-col -->
+            {% if sidebar is not defined %}
+                <div class="sidebar widget-area-11">
+                    <div class="widget widget_search style1">
+                        <h3 class="widget-title style3"><span class="fa fa-search"></span>Wyszu</h3>
+                        <div class="search-box">
+                            <form action="{{ path('blog_post_search') }}" class="search-form clearfix" method="get">
+                                <input type="text" onblur="if (this.value == '') this.value = this.defaultValue;"
+                                       onfocus="if (this.value == this.defaultValue) this.value = '';"
+                                       value="Search..."
+                                       name="search" class="search-text">
+                                <button type="submit" class="search-submit">
+                                    <span class="fa fa-search"></span>
+                                </button>
+                            </form>
+                            <!-- search-form -->
+                        </div>
+                    </div>
+                    <!-- widget -->
+                    {{ print_table() }}
+                    {{ print_last_next_round() }}
+                    {{ print_latest_news_comments() }}
+                    <div class="widget kopa-facebook-widget kopa-tab-1-widget">
+                        <h3 class="widget-title style16"><span>facebook</span></h3>
+                        <iframe src="http://www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fkopatheme&amp;width&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true"></iframe>
+                    </div>
+                    <!-- widget facebook -->
+                </div>
+                <!-- sidebar -->
+            {% endif %}
+        </div>
+        <!-- row -->
+    </div>
+    <!-- wrapper -->
+</div>
+
+<div id="bottom-sidebar">
+    <div class="bottom-area-1">
+        <div class="wrapper">
+            <div class="kopa-logo">
+                <a href="{{ path('blog_posts_index') }}"><img class="img-thumbnail" src="{{ asset('bundles/clubblog/images/draco.png') }}" alt="logo"></a>
+            </div>
+            <!-- logo -->
+            <nav class="bottom-nav">
+                <ul class="bottom-menu" style="line-height: 99px;">
+                    <li><a href="{{ path('blog_posts_index') }}">Strona główna</a></li>
+                    <li><a href="{{ path('blog_pages_contact') }}">Kontakt</a></li>
+                    {% if app.user %}
+                        <li><a href="{{ path('fos_user_profile_edit') }}">Profil użytkownika</a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li><a href="{{ path('easyadmin') }}">Admin</a></li>
+                        {% endif %}
+                    {% else %}
+                        <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+                        <li><a href="{{ path('fos_user_registration_register') }}">Rejestracja</a></li>
+                    {% endif %}
+                    <li><a href="{{ path('game_club_info', {'slug': 'draco-kowala'}) }}">Informacje</a></li>
+                    <li><a href="{{ path('blog_pages_gallery') }}">Galeria</a></li>
+                    <li><a href="{{ path('game_games_table') }}">Tabela</a></li>
+                    <li><a href="{{ path('game_games_games') }}">Terminarz</a></li>
+                </ul>
+            </nav>
+            <!--/end bottom-nav-->
+            <nav class="bottom-nav-mobile clearfix">
+                <a class="pull fa fa-bars" style="margin-top: 34px; margin-bottom: 34px;"></a>
+                <ul class="main-menu-mobile bottom-menu-mobile" style="top: 39px;">
+                    <li><a href="{{ path('blog_posts_index') }}">Strona główna</a></li>
+                    <li><a href="{{ path('blog_pages_contact') }}">Kontakt</a></li>
+                    {% if app.user %}
+                        <li><a href="{{ path('fos_user_profile_edit') }}">Profil użytkownika</a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li><a href="{{ path('easyadmin') }}">Admin</a></li>
+                        {% endif %}
+                    {% else %}
+                        <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+                        <li><a href="{{ path('fos_user_registration_register') }}">Rejestracja</a></li>
+                    {% endif %}
+                    <li><a href="{{ path('game_club_info', {'slug': 'draco-kowala'}) }}">Informacje</a></li>
+                    <li><a href="{{ path('blog_pages_gallery') }}">Galeria</a></li>
+                    <li><a href="{{ path('game_games_table') }}">Tabela</a></li>
+                    <li><a href="{{ path('game_games_games') }}">Terminarz</a></li>
+                </ul>
+            </nav>
+            <!--/main-menu-mobile-->
+        </div>
+        <!-- wrapper -->
+    </div>
+    <!-- bottom-area-2 -->
+</div>
+<!-- bottom-sidebar -->
+<footer id="kopa-footer">
+    <div class="wrapper clearfix">
+        <p id="copyright" class="">Copyright © 2016 . All Rights Reserved.
+            <a href="{{ path('blog_posts_index') }}">
+            </a>
+        </p>
+    </div>
+    <!-- wrapper -->
+</footer>
+<!-- kopa-footer -->
+<a href="#id" class="scrollup"><span class="fa fa-chevron-up"></span></a>
+
+{% block javascripts %}
+    <script src="{{ asset('public/js/site.js') }}"></script>
+{% endblock %}
+
+</body>
+</html>
+

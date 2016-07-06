@@ -1,0 +1,36 @@
+services:
+    season.listener:
+        class: Club\GameBundle\EventListener\SeasonEvent
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }
+    
+    player_assists.listener:
+        class: Club\GameBundle\EventListener\PlayersAssistsEvent
+        tags:
+            - { name: doctrine.event_listener, event: postUpdate }
+            - { name: doctrine.event_listener, event: postPersist }    
+                   
+    player_goals.listener:
+        class: Club\GameBundle\EventListener\PlayersGoalsEvent
+        tags:
+            - { name: doctrine.event_listener, event: postUpdate }
+            - { name: doctrine.event_listener, event: postPersist }
+    
+    team_stats.listener:
+        class: Club\GameBundle\EventListener\TeamStatsEvent
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }
+            - { name: doctrine.event_listener, event: postUpdate }
+            
+    player_stats.listener:
+        class: Club\GameBundle\EventListener\PlayersStatsEvent
+        tags:
+            - { name: doctrine.event_listener, event: postUpdate }
+            - { name: doctrine.event_listener, event: postPersist }        
+    
+    club_game.twig_extension:
+        class: Club\GameBundle\Twig\Extension\GameExtension
+        arguments: ["@doctrine"]
+        public: true
+        tags:
+            - { name: twig.extension }

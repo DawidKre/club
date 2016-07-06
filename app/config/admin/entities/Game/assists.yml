@@ -1,0 +1,26 @@
+easy_admin:
+    entities:
+        Assists:
+            class: Club\GameBundle\Entity\Assists
+            label: 'Asysty'
+            edit:
+                title: "Edytuj asysty"
+            list:
+                title: "Lista asyst"
+                actions: 
+                    - { name: 'new', label: 'Dodaj asysty', icon: 'plus'}
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                fields: 
+                    - { property: 'matches.name', label: 'Mecz' }
+                    - { property: 'matches.score', label: 'Wynik' }
+                    - { property: 'matches.date', label: 'Mecz', type: 'date' }
+                    - { property: 'player', label: 'Zawodnik' }
+                    - { property: 'numAssists', label: 'Liczba asyst' }
+                    
+            form:
+                title: "Dodaj asysty"
+                fields:
+                    - { property: 'matches', label: 'Mecz' }
+                    - { property: 'player', label: 'Zawodnik' }
+                    - { property: 'numAssists', label: 'Liczba asyst' }

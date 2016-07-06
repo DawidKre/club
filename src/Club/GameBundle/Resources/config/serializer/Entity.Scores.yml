@@ -1,0 +1,58 @@
+Club\GameBundle\Entity\Scores:
+    relations:
+        -
+            rel: self
+            href: 
+                route: api_game_assist_show
+                parameters: 
+                    id: expr(object.getId())
+                absolute: false
+        -
+            rel: player
+            href: 
+                route: api_game_player_show
+                parameters: 
+                    slug: expr(object.getPlayer().getSlug())
+                absolute: false               
+        -
+            rel: match
+            href: 
+                route: api_game_match_show
+                parameters: 
+                    id: expr(object.getMatches().getId())
+                absolute: false       
+#        -
+#            rel: team
+#            embedded:
+#                content: expr(object.getTeam())
+#                max_depth: 1
+#            exclusion:
+#                groups: [list]
+#                max_depth: 1
+
+    exclusion_policy: ALL
+    accessor_order: custom
+    custom_accessor_order: [id]
+    properties: 
+        id:
+            expose: true
+        numGoals:
+            expose: true   
+            serialized_name: num_goals
+    virtual_properties:
+        getPlayerName:
+            serialized_name: player_name
+            type: string
+            groups: [Default, Match]
+        getPlayerId:
+            serialized_name: player_id
+            type: integer
+            groups: [Default, Match]
+        getMatchName:
+            serialized_name: match
+            type: string
+            groups: [Default]
+        getMatchId:
+            serialized_name: match_id
+            type: integer
+            groups: [Default]

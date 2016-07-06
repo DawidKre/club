@@ -1,0 +1,65 @@
+Club\GameBundle\Entity\Assists:
+    relations:
+        -
+            rel: self
+            href: 
+                route: api_game_assist_show
+                parameters: 
+                    id: expr(object.getId())
+                absolute: false
+        -
+            rel: player
+            href: 
+                route: api_game_player_show
+                parameters: 
+                    slug: expr(object.getPlayer().getSlug())
+                absolute: false               
+        -
+            rel: match
+            href: 
+                route: api_game_match_show
+                parameters: 
+                    id: expr(object.getMatches().getId())
+                absolute: false                   
+#        -
+#            rel: position
+#            embedded:
+#                content: expr(object.getPosition())
+#                max_depth: 0
+#                exclusion:
+#                    max_depth: 0
+#                    groups: [list]
+#            exclusion:
+#                groups: [list]
+#                max_depth: 0
+#        -
+#            rel: player
+#            embedded:
+#                content: expr(object.getPlayer())
+#                max_depth: 1
+#            exclusion:
+#                groups: [default]
+#                max_depth: 1
+
+    exclusion_policy: ALL
+    accessor_order: custom
+    custom_accessor_order: [id]
+    properties: 
+        id:
+            expose: true
+        numAssists:
+            expose: true   
+            serialized_name: num_assists
+    virtual_properties:
+        getPlayerName:
+            serialized_name: player_name
+            type: string
+        getPlayerId:
+            serialized_name: player_id
+            type: integer
+        getMatchName:
+            serialized_name: match
+            type: string
+        getMatchId:
+            serialized_name: match_id
+            type: integer

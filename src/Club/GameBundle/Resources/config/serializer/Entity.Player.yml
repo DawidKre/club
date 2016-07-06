@@ -1,0 +1,71 @@
+Club\GameBundle\Entity\Player:
+    relations:
+        -
+            rel: self
+            href: 
+                route: api_game_player_show
+                parameters: 
+                    slug: expr(object.getSlug())
+                absolute: false
+        -
+            rel: position
+            href: 
+                route: api_game_position_show
+                parameters: 
+                    slug: expr(object.getPosition().getSlug())
+                absolute: false               
+        -
+            rel: team
+            href: 
+                route: api_game_team_show
+                parameters: 
+                    slug: expr(object.getTeam().getSlug())
+                absolute: false                   
+#        -
+#            rel: position
+#            embedded:
+#                content: expr(object.getPosition())
+#                max_depth: 0
+#                exclusion:
+#                    max_depth: 0
+#                    groups: [list]
+#            exclusion:
+#                groups: [list]
+#                max_depth: 0
+#        -
+#            rel: team
+#            embedded:
+#                content: expr(object.getTeam())
+#                max_depth: 1
+#            exclusion:
+#                groups: [list]
+#                max_depth: 1
+
+    exclusion_policy: ALL
+    accessor_order: custom
+    custom_accessor_order: [id, name, number, bornDate]
+    properties : 
+        id:
+            expose: true
+        name:
+            expose: true
+        bornDate:
+            expose: true   
+        number:
+            expose: true           
+        photo:
+            expose: true
+    virtual_properties:
+        getPositionName:
+            serialized_name: position
+            type: string
+        getPositionId:
+            serialized_name: positionId
+            type: integer
+        getTeamName:
+            serialized_name: team
+            type: string
+        getTeamId:
+            serialized_name: teamId
+            type: integer
+       

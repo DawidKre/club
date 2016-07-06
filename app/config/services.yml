@@ -1,0 +1,20 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+    app.form.registration:
+            class: Club\UserBundle\Form\RegistrationType
+            tags:
+                - { name: form.type, alias: app_user_registration }
+    app.form.profile:
+                class: Club\UserBundle\Form\ProfileType
+                tags:
+                    - { name: form.type, alias: app_user_profile }
+
+    twig.extension.text:
+         class: Twig_Extensions_Extension_Text
+         tags:
+             - { name: twig.extension }
+      

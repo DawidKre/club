@@ -1,0 +1,33 @@
+<div class="widget kopa-charts-widget style1" id="table">
+    <h3 class="widget-title style14">
+        <span>tabela</span>
+        <a href="{{ path('game_games_table') }}">Więcej <span class="fa fa-chevron-right"></span></a>
+    </h3>
+    <div class="widget-content">
+        <header>
+            <div class="t-col">Lp</div>
+            <div class="t-col width1">Klub</div>
+            <div class="t-col">Mecze</div>
+            <div class="t-col">Pkt</div>
+        </header>
+        <ul class="clearfix">
+            {% set id = 1 %}
+            {% for team in table %}
+                <li>
+                    {% if team.name == 'Draco Kowala' %}
+                        <div class="t-col" style="color:black">{{ id }}</div>
+                        <div class="t-col width1" style=" color:black">{{ team.name |truncate(13, true, "..") }}</div>
+                        <div class="t-col" style=" color:black">{{ team.matches }}</div>
+                        <div class="t-col" style="color:black">{{ team.points }}</div>
+                    {% else %}
+                        <div class="t-col">{{ id }}</div>
+                        <div class="t-col width1">{{ team.name |truncate(13,true, "..") }}</div>
+                        <div class="t-col">{{ team.matches }}</div>
+                        <div class="t-col">{{ team.points }}</div>
+                    {% endif %}
+                </li>
+                {% set id = id +1 %}
+            {% endfor %}
+        </ul>
+    </div>
+</div>

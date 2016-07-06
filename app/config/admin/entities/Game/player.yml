@@ -1,0 +1,42 @@
+easy_admin:
+    entities:
+        Player:
+            class: Club\GameBundle\Entity\Player
+            label: 'Zawodnik info'
+            edit:
+                title: "Edytuj zawodnika"
+            list:
+                actions: 
+                    - { name: 'new', label: 'Dodaj zawodnika',icon: 'plus'}
+                    - { name: 'show', label: '', icon: 'eye' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                title: "Lista zawodników"
+                fields: 
+                    - { property: 'name', label: 'Nazwa' }
+                    - { property: 'bornDate', label: 'Data ur.', type: 'date' }
+                    - { property: 'number', label: 'Numer' }
+                    - { property: 'photo', label: 'Zdj.', type: 'image'}
+                    - { property: 'team', label: 'Klub' }
+                    - { property: 'position', label: 'Pozycja' }
+            show:
+                fields: 
+                    - { property: 'name', label: 'Nazwa' }
+                    - { property: 'bornDate', label: 'Data urodzenia', type: 'date' }
+                    - { property: 'number', label: 'Numer' }
+                    - { property: 'photo', label: 'Zdjęcie', type: 'image'}
+                    - { property: 'team', label: 'Klub' }
+                    - { property: 'position', label: 'Pozycja' }
+                    - { property: 'playerStats', label: 'Statystyki' }
+
+            form:
+                title: "Dodaj zawodnika"
+                fields: 
+                    - { property: 'name', label: 'Nazwa' }
+                    - { property: 'bornDate', label: 'Data ur.', type: 'date' }
+                    - { property: 'number', label: 'Numer' }
+                    - { property: 'photoFile', label: 'Zdj.', type: 'file'}
+                    - { property: 'team', label: 'Klub', type_options: { multiple: false } }
+                    - { property: 'position', label: 'Pozycja' }
+            
+    

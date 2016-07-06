@@ -1,0 +1,85 @@
+{% extends 'ClubBlogBundle::layout.html.twig' %}
+
+{% block pageTitle %}
+    {{ siteTitle }} {{ parent() }}
+{% endblock %}
+
+{% block newsBar %}
+    {{ print_news_bar() }}
+{% endblock %}
+
+
+{% block body %}
+    <div class="kopa-main-col">
+
+        <div class="kopa-breadcrumb">
+            <div class="wrapper clearfix">
+                <span itemtype="http://data-vocabulary.org/Breadcrumb" itemscope="">
+                    <a itemprop="url" href="fixtures-results.html#">
+                        <span itemprop="title">Home</span>
+                    </a>
+                </span>
+                    &nbsp;|&nbsp;
+                <span itemtype="http://data-vocabulary.org/Breadcrumb" itemscope="">
+                    <a itemprop="url" class="current-page">
+                        <span itemprop="title">{{ siteTitle }}</span>
+                    </a>
+                </span>
+            </div>
+        </div>
+        <!--/end .breadcrumb-->
+        <div class="tab-content ft-tab-content mb-30">
+            <div class="tab-pane active" id="table">
+                <div class="widget kopa-charts-widget">
+                    <h3 class="widget-title style17">{{ table.0.seasonName }}</h3>
+                    <div class="widget-content" id="table">
+                        <header>
+                            <div class="t-col width3">Lp.</div>
+                            <div class="t-col width2">Klub</div>
+                            {% for key,value in orders %}
+                                <div class="t-col width3">
+                                    {% if (app.request.query.get('orderDir') == 'DESC') and (app.request.query.get('orderBy') == key) %}
+                                        <a href="{{ path('game_games_table',{'orderBy': key , 'orderDir': 'ASC'}) }}">
+                                            {{ value }} <i class="fa fa-arrow-up"></i>
+                                        </a>
+                                    {% elseif (app.request.query.get('orderDir') == 'ASC') and (app.request.query.get('orderBy') == key) %}
+                                        <a href="{{ path('game_games_table',{'orderBy':  key , 'orderDir': 'DESC'}) }}">
+                                            {{ value }} <i class="fa fa-arrow-down"></i>
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ path('game_games_table', {'orderBy': key , 'orderDir': 'DESC'}) }}">
+                                            {{ value }}
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </header>
+                        <ul class="clearfix">
+                            {% set i = 1 %}
+                            {% for team in table %}
+                                {% if (team.name == 'Draco Kowala') %}
+                                    <li style="color:black">
+                                {% else %}
+                                    <li>
+                                {% endif %}
+                                <div class="t-col width3">{{ i }}</div>
+                                <div class="t-col width2">{{ team.name|truncate(16,true, ".") }}</div>
+                                <div class="t-col width3 tbl-col">{{ team.matches }}</div>
+                                <div class="t-col width3 tbl-col">{{ team.points }}</div>
+                                <div class="t-col width3 tbl-col">{{ team.wins }}</div>
+                                <div class="t-col width3 tbl-col">{{ team.draws }}</div>
+                                <div class="t-col width3 mb-col">{{ team.loses }}</div>
+                                <div class="t-col width3 mb-col">{{ team.goalsScored }}</div>
+                                <div class="t-col width3 mb-col">{{ team.goalsLost }}</div>
+                                <div class="t-col width3">{{ team.bilans }}</div>
+                                </li>
+                                {% set i = i+1 %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- tab-pane -->
+        </div>
+    </div>
+{% endblock %}

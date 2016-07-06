@@ -1,0 +1,9 @@
+club_user_login:
+    resource:   "@ClubUserBundle/Controller/LoginController.php"
+    type:       annotation
+    
+service_user:
+    type: rest
+    prefix: /api
+    resource: "@ClubUserBundle/Controller/Api/UserController.php"
+    

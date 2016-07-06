@@ -1,0 +1,9 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+{% set pageTitle = 'Resetuj hasło' %}
+{% block pageTitle %}
+    {{ pageTitle }} {{ parent() }}
+{% endblock %}
+
+{% block fos_user_content %}
+    {% include "FOSUserBundle:Resetting:reset_content.html.twig" %}
+{% endblock fos_user_content %}

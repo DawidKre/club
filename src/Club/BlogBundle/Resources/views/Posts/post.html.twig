@@ -1,0 +1,320 @@
+{% extends 'ClubBlogBundle::layout.html.twig' %}
+
+{% block pageTitle %}
+    {{ post.title }} {{ parent() }}
+{% endblock %}
+
+{% block newsBar %}
+    {{ print_news_bar() }}
+{% endblock %}
+
+{% block body %}
+    <div class="kopa-main-col">
+        <div class="kopa-breadcrumb">
+            <div class="wrapper clearfix">
+                <span itemtype="http://data-vocabulary.org/Breadcrumb" itemscope="">
+                    <a itemprop="url" href="{{ path('blog_posts_index') }}">
+                        <span itemprop="title">News</span>
+                    </a>
+                </span>
+                &nbsp;|&nbsp;
+                <span itemtype="http://data-vocabulary.org/Breadcrumb" itemscope="">
+                    <a itemprop="url" class="current-page">
+                        <span itemprop="title">{{ post.title }}</span>
+                    </a>
+                </span>
+            </div>
+        </div>
+        <!--/end .breadcrumb-->
+        <!--<h3 class="categories-title mb-30">NBA</h3>-->
+        <div class="widget-area-2">
+            <!-- widget -->
+            <div class="kopa-entry-post ">
+                <article class="entry-item">
+                    <h4 class="entry-title">{{ post.title }}</h4>
+                    <div class="entry-meta">
+                        <span class="entry-author">by 
+                            <a href="{{ path('blog_author_list', {'username': post.author}) }}">{{ post.author }}</a>
+                        </span>
+                        <span class="entry-date">{{ post.createDate|date('d/m/Y') }}</span>
+                    </div>
+                    {% if not post.match %}
+                        <div class="entry-thumb">
+                            <img class="img-responsive" src="{{ asset(post.thumbnail) }}" style="width: 50%; height:50%;" alt="">
+                        </div>
+                    {% endif %}
+                    <div class="short-des" style="margin-bottom: 40px;">
+                        {{ post.content | raw }}
+                    </div>
+                    {% if (post.isMatch) and (post.match is not null) %}
+                        <div class="match-item last-item mb-20">
+                            <header>
+                                <p>Wynik:</p>
+                                <span>{{ post.match.date |date('d/m/Y') }}</span>
+                            </header>
+                            <div class="r-item">
+                                <div class="r-num" style="background: none; color:black">
+                                    {% if (post.match.scoreForHome > post.match.scoreForAway) %}
+                                        <span class="r-color">{{ post.match.scoreForHome }}</span>
+                                        <span>-</span>
+                                        <span>{{ post.match.scoreForAway }}</span>
+                                    {% elseif (post.match.scoreForHome < post.match.scoreForAway) %}
+                                        <span>{{ post.match.scoreForHome }}</span>
+                                        <span>-</span>
+                                        <span class="r-color">{{ post.match.scoreForAway }}</span>
+                                    {% else %}
+                                        <span>{{ post.match.scoreForHome }}</span>
+                                        <span>-</span>
+                                        <span>{{ post.match.scoreForAway }}</span>
+                                    {% endif %}
+                                </div>
+                                <div class="r-side left" href="">
+                                    <div class="r-thumb" style="width: 50%;">
+                                        <img src="{{ asset(post.match.teamHome.crest) }}" alt="">
+                                    </div>
+                                    <div class="r-content">
+                                        <h4>{{ post.match.teamHome }}</h4>
+                                        {% for score in post.match.scores %}
+                                            {% if (score.player.team == post.match.teamHome) %}
+                                                <p style="color:black">{{ score.player.team }}</p>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="r-side right" href="single-result.html#">
+                                    <div class="r-thumb" style="width: 50%;">
+                                        <img src="{{ asset(post.match.teamAway.crest) }}" alt="">
+                                    </div>
+                                    <div class="r-content">
+                                        <h4>{{ post.match.teamAway }}</h4>
+                                        {% for score in post.match.scores %}
+                                            {% if (score.player.team == post.match.teamAway) %}
+                                                <p style="color:black">{{ score.player }} x {{ score.numGoals }}</p>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                    {% endif %}
+                </article>
+                <div class="kopa-tag-box" style="margin-bottom: 20px;">
+                    <span>Kategoria: </span>
+                    <a href="{{ path('blog_category_list', {'slug': post.category.slug}) }}">{{ post.category.name }}</a>
+                </div>
+                {% if post.isCommentable %}
+                    <div id="comments">
+                        <h3 class="">+Komentarze+</h3>
+                        <div style="margin-bottom: 20px;">
+                            {% include '@ClubBlog/Template/flashMsg.html.twig' %}
+                        </div>
+                        <ol class="comments-list clearfix" id="allComments">
+                            {% for comment in pagination %}
+                                <li class="comment clearfix">
+                                    <article class="comment-wrap clearfix">
+                                        <div class="comment-avatar">
+                                            {% if comment.author is not null %}
+                                                <img alt="" src="{{ asset(comment.author.avatar) }}">
+                                            {% else %}
+                                                <img alt="" src="{{ asset('uploads/avatars/default-avatar.png') }}">
+                                            {% endif %}
+                                        </div>
+                                        <div class="media-body clearfix">
+                                            <header class="clearfix">
+                                                <div class="pull-left">
+                                                    <h4>{{ comment.user }}</h4>
+                                                    <span class="comment-date">{{ comment.createDate|date('d/m/Y \\|\\ H:m:s') }}</span>
+                                                </div>
+                                                <div class="comment-button pull-right">
+                                                    {% if (is_granted('ROLE_ADMIN') or (app.user == comment.user)) %}
+                                                        {% set commentToken = csrf_token(tokenName|format(comment.id)) %}
+                                                        {% set deleteUrl = path('blog_deleteComment', {'commentId': comment.id, 'token': commentToken}) %}
+                                                        <a class="comment-reply-link deleteComment" href="{{ deleteUrl }}" id="deleteComment">Usuń</a>
+                                                    {% endif %}
+                                                </div>
+                                            </header>
+                                            <p>{{ comment.comment }}</p>
+                                        </div>
+                                    </article>
+                                </li>
+                            {% endfor %}
+                        </ol>
+                        <div class="kopa-pagination">
+                            {{ knp_pagination_render(pagination) }}
+                        </div>
+                    </div>
+                    <!-- comment -->
+                    <div class="widget kopa-comment-form-widget" id="new_comment">
+                        <h3 class="widget-title style12">Dodaj komentarz<span class="ttg"></span></h3>
+                        <div class="comment-box">
+                            {{ form_start(commentForm, {'action': '#comments', 'attr': {'novalidate':'novalidate','class':'clearfix'}}) }}
+                            {% form_theme commentForm  '@ClubBlog/Form/comment_layout.html.twig' %}
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    {% if app.user %}
+                                    <p class="input-block"><span style="color:red;">(*)</span>
+                                        {{ form_row(commentForm.user, {'attr': {
+                                            'onfocus': "if(this.value=='')this.value='';",
+                                            'onblur': "if(this.value=='')this.value='';",
+                                            'class': 'valid',
+                                            'readonly': 'readonly',
+                                            'id'    : 'comment-user'}
+                                        }) }}
+                                    {% else %}
+                                    <p class="input-block"><span style="color:red;">(*)</span>
+                                        {{ form_row(commentForm.user, {'attr': {
+                                            'onfocus': "if(this.value=='')this.value='';",
+                                            'onblur': "if(this.value=='')this.value='';",
+                                            'class': 'valid',
+                                            'id'    : 'comment-user'}
+                                        }) }}
+                                    {% endif %}
+                                    </p>
+                                </div>
+                                <!-- col-md-4 -->
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <p class="input-block">
+                                        {% if app.user %}
+                                            {{ form_row(commentForm.email, {'attr': {
+                                                'onfocus': "if(this.value=='')this.value='';",
+                                                'onblur': "if(this.value=='')this.value='';",
+                                                'class': 'valid',
+                                                'readonly': 'readonly',
+                                                'id'    : 'comment-email'}
+                                            }) }}
+                                        {% else %}
+                                            {{ form_row(commentForm.email, {'attr': {
+                                                'onfocus': "if(this.value=='')this.value='';",
+                                                'onblur': "if(this.value=='')this.value='';",
+                                                'class': 'valid',
+                                                'id'    : 'comment-email'
+                                            }
+                                            }) }}
+                                        {% endif %}
+                                    </p>
+                                </div>
+                                <!-- col-md-4 -->
+                            </div>
+                            <!-- row -->
+                            <p class="textarea-block">
+                                {{ form_row(commentForm.comment, {'attr': {
+                                    'onfocus': "if(this.value=='')this.value='';",
+                                    'onblur': "if(this.value=='')this.value='';",
+                                    'class': 'valid',
+                                    'id'    : 'comment-text'}
+                                }) }}
+                            </p>
+                            <p class="comment-button clearfix" hidden>
+                                <button hidden>Prześlij</button>
+                            </p>
+                            <p id="submit-comment"></p>
+                                        {{ form_row(commentForm.save, {'attr': {'value': 'Prześlij'}}) }}
+
+
+                            {{ form_end(commentForm) }}
+                            <div id="response"></div>
+                        </div>
+                        <!-- comment-box -->
+
+                </div>
+                {% else %}
+                    <div id="comments">
+                        <h3 class="">+Komentarze zablokowane+</h3>
+                    </div>
+                {% endif %}
+                <!-- widget -->
+            </div>
+            <!-- widget -->
+        </div>
+        <!-- widget-area-2 -->
+    </div>
+{% endblock %}
+
+{#
+{% if is_granted('ROLE_ADMIN') %}
+    {% block javascripts %}
+        {{ parent() }}
+        <script src="{{ asset('public/js/jquery-2.2.3.min.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                var page = $(this).attr("data-page");
+                console.log(page);
+                $('body').on('click', '#deleteComment', function (e) {
+                    e.preventDefault();
+
+                    var $btn = $(this);
+                    var deleteUrl = $btn.attr('href');
+                    if (confirm('Czy na pewno chcesz usunąć komentarz')) {
+                        $.getJSON(deleteUrl, function (json) {
+                            /*alert(json.message);*/
+
+                            if ('ok' === json.status) {
+                                $btn.closest('.comment').remove();
+                            }
+                        });
+                    }
+                });
+                var pathname = window.location.pathname;
+                var $comments = $('#allComments');
+
+
+                $.ajax({
+                    dataType: 'json',
+                    url: '/api/posts' + pathname + '/comments',
+                    success: function (comments) {
+
+                        $.each(comments.items, function (i, comment) {
+                            $comments.append('<li class="comment clearfix"><article class="comment-wrap clearfix">' +
+                                    '<div class="comment-avatar"><img alt="" src="' + '' + '"></div>' +
+                                    '<div class="media-body clearfix"><header class="clearfix">' +
+                                    '<div class="pull-left"><h4>' + comment.user + '</h4><span ' +
+                                    'class="comment-date">' + comment.createDate + '</span>' +
+                                    '</div><div class="comment-button pull-right"></div>' +
+                                    '<div class="comment-button pull-right">' +
+                                    '{% if (is_granted('ROLE_ADMIN') or (app.user == '+comment.user+')) %}' +
+                                    '{% set commentToken = csrf_token(tokenName|format('+comment.id+')) %}' +
+                                    '{% set deleteUrl = path('blog_deleteComment', {'commentId': '+comment.id+', 'token': commentToken}) %}' +
+                                    '<a class="comment-reply-link deleteComment" href="{{ deleteUrl }}" id="deleteComment">Usuń</a>{% endif %}</div>' +
+                                    '</header><p>' + comment.comment + '</p></div></article></li>')
+                        })
+                    }
+                });
+                var $user = $('#comment_user');
+                var $email = $('#comment_email');
+                var $text = $('#comment_comment');
+                var $newComment = $('#allComments')
+                $('#submit-comment').on('click', function () {
+                    var comment = {
+                        user: $user.val(),
+                        email: $email.val(),
+                        text: $text.val()
+                    };
+                    $.ajax({
+                        type: 'POST',
+                        url: 'api/comments',
+                        data: '{"comment": "' + comment.text + '", "user" : "' + comment.user + '", "post" : "' +
+                        124 + '"}',
+                        success: function (newComment) {
+                            $newComment.append('<li class="comment clearfix"><article class="comment-wrap clearfix">' +
+                                    '<div class="comment-avatar"><img alt="" src="' + '' + '"></div>' +
+                                    '<div class="media-body clearfix"><header class="clearfix">' +
+                                    '<div class="pull-left"><h4>' + comment.user + '</h4><span ' +
+                                    'class="comment-date">' + newComment.createDate + '</span>' +
+                                    '</div><div class="comment-button pull-right"></div>' +
+                                    '<div class="comment-button pull-right">' +
+                                    '{% if (is_granted('ROLE_ADMIN') or (app.user == '+comment.user+')) %}' +
+                                    '{% set commentToken = csrf_token(tokenName|format('+comment.id+')) %}' +
+                                    '{% set deleteUrl = path('blog_deleteComment', {'commentId': '+comment.id+', 'token': commentToken}) %}' +
+                                    '<a class="comment-reply-link deleteComment" href="{{ deleteUrl }}" id="deleteComment">Usuń</a>{% endif %}</div>' +
+                                    '</header><p>' + newComment.comment + '</p></div></article></li>')
+                        }
+                    })
+                });
+                
+            });
+
+        </script>
+    {% endblock %}
+{% endif %}#}

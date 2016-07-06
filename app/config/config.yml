@@ -1,0 +1,157 @@
+imports:
+    - { resource: rest.yml }
+    - { resource: parameters.yml }
+    - { resource: admin/ }
+    - { resource: security.yml }
+    - { resource: services.yml }
+
+
+    - { resource: "@ClubBlogBundle/Resources/config/services.yml" }
+    - { resource: "@ClubUserBundle/Resources/config/services.yml" }
+    - { resource: "@ClubGameBundle/Resources/config/services.yml" }
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: pl
+    jms_serializer.camel_case_naming_strategy.class: JMS\Serializer\Naming\IdenticalPropertyNamingStrategy
+framework:
+    http_method_override: true
+    serializer: true
+    #esi:             ~
+    translator:      { fallbacks: ["%locale%"] }
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    #serializer:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
+        handler_id:  session.handler.native_file
+        save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
+    fragments:       ~
+    assets: ~
+
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+    form_themes:
+        - 'ClubUserBundle:Form:form_div_layout.html.twig'
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   pdo_mysql
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
+        charset:  UTF8
+        # if using pdo_sqlite as your database driver:
+        #   1. add the path in parameters.yml
+        #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
+        #   2. Uncomment database_path in parameters.yml.dist
+        #   3. Uncomment next line:
+        #     path:     "%database_path%"
+
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+        filters:
+            softdeleteable:
+                class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
+                enabled: true
+
+#    my.listener2:
+#        class: Club\GameBundle\EventListener\StatsIndexer
+#        tags:
+#            - { name: doctrine.event_listener, event: postPersist, connection: default }            
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
+    spool:     { type: memory }
+
+assetic:
+    debug:          '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    node: /usr/bin/nodejs
+    filters:
+        uglifycss:
+            bin: /usr/local/bin/uglifycss
+        uglifyjs2:
+            bin:  /usr/local/bin/uglifyjs
+        cssrewrite: ~
+stof_doctrine_extensions:
+    orm:
+        default:
+            sluggable: true
+            softdeleteable: true
+            
+knp_paginator:
+    page_range: 5                          # default page range used in pagination control
+    default_options:
+        page_name: page                # page query parameter name
+        sort_field_name: sort          # sort field query parameter name
+        sort_direction_name: direction # sort direction query parameter name
+        distinct: true                 # ensure distinct results, useful when ORM queries are using GROUP BY statements
+    template:
+        pagination: 'ClubBlogBundle:Pagination:pagination.html.twig'
+        #pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig
+           # sliding pagination controls template
+        sortable: 'KnpPaginatorBundle:Pagination:sortable_link.html.twig' # sort link template
+        filtration: 'KnpPaginatorBundle:Pagination:filtration.html.twig'
+
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: Club\UserBundle\Entity\User
+    from_email:
+        address:              "%mailer_user%"
+        sender_name:          Draco Kowala
+    profile:
+        form:
+            type: Club\UserBundle\Form\ProfileType
+    registration:
+        confirmation:
+            enabled: true
+            template: 'FOSUserBundle:Registration:email.txt.twig'
+            from_email:
+                address: "%mailer_user%"
+                sender_name: Draco Kowala - Rejestracja
+        form:
+            type: Club\UserBundle\Form\RegistrationType
+    resetting:
+        token_ttl:            86400
+        email:
+            template:             'FOSUserBundle:Resetting:email.txt.twig'
+            from_email:
+                address: "%mailer_user%"            # Required
+                sender_name: Draco Kowala - Resetowanie hasła          # Required
+
+nelmio_api_doc: ~
+
+lexik_jwt_authentication:
+    private_key_path: %kernel.root_dir%/../var/jwt/private.pem
+    public_key_path:  %kernel.root_dir%/../var/jwt/public.pem
+    pass_phrase:      %jwt_key_pass_phrase%
+    token_ttl:        3600
+    
+bazinga_hateoas:
+    serializer:
+        json: custom_hateoas_json_serializer
+        

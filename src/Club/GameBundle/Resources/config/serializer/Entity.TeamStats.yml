@@ -1,0 +1,96 @@
+Club\GameBundle\Entity\TeamStats:
+    relations:
+        -
+            rel: self
+            href: 
+                route: api_game_player_stats_show
+                parameters: 
+                    id: expr(object.getId())
+                absolute: false
+        -
+            rel: season
+            href: 
+                route: api_game_season_show
+                parameters: 
+                    id: expr(object.getSeason().getId())
+                absolute: false               
+        -
+            rel: player
+            href: 
+                route: api_game_team_show
+                parameters: 
+                    slug: expr(object.getTeam().getSlug())
+                absolute: false  
+#            rel: team
+#            href: 
+#                route: api_game_team_show
+#                parameters: 
+#                    slug: expr(object.getTeam().getSlug())
+#                absolute: false                   
+#        -
+#            rel: position
+#            embedded:
+#                content: expr(object.getPosition())
+#                max_depth: 0
+#                exclusion:
+#                    max_depth: 0
+#                    groups: [list]
+#            exclusion:
+#                groups: [list]
+#                max_depth: 0
+#        -
+#            rel: team
+#            embedded:
+#                content: expr(object.getTeam())
+#                max_depth: 1
+#            exclusion:
+#                groups: [list]
+#                max_depth: 1
+
+    exclusion_policy: ALL
+    accessor_order: custom
+    custom_accessor_order: [id]
+    properties: 
+        id:
+            expose: true
+        matches:
+            expose: true   
+            type: integer
+        wins:
+            expose: true
+            type: integer
+        draws:
+            expose: true
+            type: integer
+        loses:
+            expose: true
+            type: integer
+        points:
+            expose: true
+            type: integer    
+        goalsScored:
+            expose: true
+            type: integer   
+            erialized_name: goals_scored
+        goalsLost:
+            expose: true
+            type: integer   
+            erialized_name: goals_lost
+        bilans:
+            expose: true
+            type: integer   
+
+                                
+    virtual_properties:
+        getTeamName:
+            serialized_name: team_name
+            type: string
+        getTeamId:
+            serialized_name: team_id
+            type: integer
+        getSeasonName:
+            serialized_name: season
+            type: string
+        getSeasonId:
+            serialized_name: season_id
+            type: integer

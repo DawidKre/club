@@ -1,0 +1,58 @@
+Club\GameBundle\Entity\Round:
+    relations:
+        -
+            rel: self
+            href: 
+                route: api_game_round_show
+                parameters: 
+                    id: expr(object.getId())
+                absolute: false               
+        -
+            rel: matches
+            href: 
+                route: api_game_round_matches_list
+                parameters: 
+                    id: expr(object.getId())
+                absolute: false                   
+#        -
+#            rel: position
+#            embedded:
+#                content: expr(object.getPosition())
+#                max_depth: 0
+#                exclusion:
+#                    max_depth: 0
+#                    groups: [list]
+#            exclusion:
+#                groups: [list]
+#                max_depth: 0
+#        -
+#            rel: team
+#            embedded:
+#                content: expr(object.getTeam())
+#                max_depth: 1
+#            exclusion:
+#                groups: [list]
+#                max_depth: 1
+
+    exclusion_policy: ALL
+    accessor_order: custom
+    custom_accessor_order: [id]
+    properties: 
+        id:
+            expose: true
+        name:
+            expose: true   
+
+#    virtual_properties:
+#        getPlayerName:
+#            serialized_name: player_name
+#            type: string
+#        getPlayerId:
+#            serialized_name: player_id
+#            type: integer
+#        getMatchName:
+#            serialized_name: match
+#            type: string
+#        getMatchId:
+#            serialized_name: match_id
+#            type: integer

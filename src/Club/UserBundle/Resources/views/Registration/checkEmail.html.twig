@@ -1,0 +1,14 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+{% set pageTitle = 'Sprawdź email' %}
+{% block pageTitle %}
+    {{ pageTitle }} {{ parent() }}
+{% endblock %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    <div class="col-md-8 col-sm-8 col-xs-8">
+        <ul class="kopa-alert alert alert-success alert-dismissable">
+            <li>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</li>
+        </ul>
+    </div>
+{% endblock fos_user_content %}

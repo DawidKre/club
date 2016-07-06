@@ -1,0 +1,361 @@
+Club\GameBundle\Entity\Team:
+    team1:
+        name: Draco Kowala
+        adress: Kowala Pierwsza, 24-320 Poniatowa
+        about: <text($maxNbChars = 2000)>
+        colors: Niebieski, biały, żółty
+        email: <email()>
+        creationDate: <dateTimeBetween('-30 years', '-29 years')>
+        facebookLink: https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ffcdracokowala%2F&tabs&width=330&height=130&small_header=false&adapt_container_width=false&hide_cover=false&show_facepile=false&appId
+    team2:
+        name: Viking Leśniczówka
+        adress: Leśniczówka
+        about: <text($maxNbChars = 2000)>
+        colors: Czarny, zielony
+        email: <email()>
+    team3:
+        name: Wisła Jóżefów
+        adress: Jóżefów
+        about: <text($maxNbChars = 2000)>
+        colors: Czarny, zielony
+        email: <email()>
+    team4:
+        name: Błękitni Kierz
+        adress: Kierz
+        about: <text($maxNbChars = 2000)>
+        colors: Czarny, zielony
+        email: <email()>
+    team5:
+        name: Czarni Puszno Godowskie
+        adress: Puszno Godowskie
+        about: <text($maxNbChars = 2000)>
+        colors: Czarny, zielony
+        email: <email()>
+    team6:
+        name: LKS Elżbieta
+        adress: Elżbieta
+        about: <text($maxNbChars = 2000)>
+        colors: Czarny, zielony
+        email: <email()>
+    team7:
+        name: Pogoń Trzebiesza
+        adress: Trzebiesza
+        about: <text($maxNbChars = 2000)>
+        colors: Czarny, zielony
+        email: <email()>
+    team8:
+        name: Poraj Kraczewice
+        adress: Kraczewice
+        about: <text($maxNbChars = 2000)>
+        colors: Czarny, zielony
+        email: <email()>
+    team9:
+        name: Dąbrowiak Dąbrowa Wronowska
+        adress: Dąbrowa Wronowska
+        about: <text($maxNbChars = 2000)>
+        colors: Czarny, zielony
+        email: <email()>                
+    team10:
+        name: Jaworzanka Rogów
+        adress: Rogów
+        about: <text($maxNbChars = 2000)>
+        colors: Czarny, zielony
+        email: <email()>    
+
+Club\GameBundle\Entity\Season:
+    season1:
+        name: B klasa 2015/2016
+        teamsNum: 10             
+
+Club\GameBundle\Entity\Position:
+    position1:
+        name: Bramkarz
+        positionOrder: 1
+    position2:
+        name: Obrońca
+        positionOrder: 2
+    position3:
+        name: Pomocnik
+        positionOrder: 3
+    position4:
+        name: Napastnik
+        positionOrder: 4
+        
+Club\GameBundle\Entity\Round:
+    round1:
+        name: 1 Kolejka
+    round2:
+        name: 2 Kolejka 
+    round3:
+        name: 3 Kolejka
+    round4:
+        name: 4 Kolejka 
+    round5:
+        name: 5 Kolejka
+    round6:
+        name: 6 Kolejka 
+    round7:
+        name: 7 Kolejka
+    round8:
+        name: 8 Kolejka 
+    round9:
+        name: 9 Kolejka
+    round10:
+        name: 10 Kolejka  
+    round11:
+        name: 11 Kolejka
+    round12:
+        name: 12 Kolejka 
+    round13:
+        name: 13 Kolejka
+    round14:
+        name: 14 Kolejka 
+    round15:
+        name: 15 Kolejka
+    round16:
+        name: 16 Kolejka 
+    round17:
+        name: 17 Kolejka
+    round18:
+        name: 18 Kolejka 
+    round19:
+        name: 19 Kolejka
+    round20:
+        name: 20 Kolejka  
+    round21:
+        name: 21 Kolejka
+    round22:
+        name: 22 Kolejka 
+    round23:
+        name: 23 Kolejka
+    round24:
+        name: 24 Kolejka 
+    round25:
+        name: 25 Kolejka
+    round26:
+        name: 26 Kolejka 
+    round27:
+        name: 27 Kolejka
+    round28:
+        name: 28 Kolejka 
+    round29:
+        name: 29 Kolejka
+    round30:
+        name: 30 Kolejka 
+        
+Club\GameBundle\Entity\Player:
+    player1:
+        team: "@team1"
+        position: "@position1"
+        name: Mateusz Popiołek
+        bornDate: <dateTimeBetween('-30 years', '-15 years')>
+        number: 1
+    player2:
+        team: "@team1"
+        position: "@position2"
+        name: Rafał Depta
+        bornDate: <dateTimeBetween('-30 years', '-15 years')>
+        number: 3
+    player3:
+        team: "@team1"
+        position: "@position2"
+        name: Michał Stachyra
+        bornDate: <dateTimeBetween('-30 years', '-15 years')>
+        number: 2
+    player4:
+        team: "@team1"
+        position: "@position2"
+        name: Karol Chyła
+        bornDate: <dateTimeBetween('-30 years', '-15 years')>
+    player5:
+        team: "@team1"
+        position: "@position2"
+        name: Łukasz Kręcisz
+        bornDate: <dateTimeBetween('-30 years', '-15 years')>
+        number: 13 
+    player6:
+        team: "@team1"
+        position: "@position2"
+        name: Piotr Wieczorek
+        bornDate: <dateTimeBetween('-30 years', '-15 years')>
+        number: 17
+    player7:
+        team: "@team1"
+        position: "@position2"
+        name: Radek Wilkos
+        bornDate: <dateTimeBetween('-30 years', '-15 years')>
+    player8:
+        team: "@team1"
+        position: "@position2"
+        name: Dawid Piłat
+        bornDate: <dateTimeBetween('-30 years', '-15 years')>
+    player9:
+        team: "@team1"
+        position: "@position4"
+        name: Karol Mazur
+        bornDate: <dateTimeBetween('-30 years', '-15 years')>
+    player10:
+        team: "@team1"
+        position: "@position3"
+        name: Arkadiusz Grabczak
+        bornDate: <dateTimeBetween('-30 years', '-15 years')> 
+    player11:
+        team: "@team1"
+        position: "@position3"
+        name: Mirosła Chudzik
+        bornDate: <dateTimeBetween('-30 years', '-15 years')>
+    player12:
+        team: "@team1"
+        position: "@position3"
+        name: Piotr Kręcisz
+        bornDate: <dateTimeBetween('-30 years', '-15 years')>
+    player13:
+        team: "@team1"
+        position: "@position3"
+        name: Bartosz Kisiołek
+        bornDate: <dateTimeBetween('-30 years', '-15 years')>
+    player14:
+        team: "@team1"
+        position: "@position3"
+        name: Jakub Sołdek
+        bornDate: <dateTimeBetween('-30 years', '-15 years')> 
+    player15:
+        team: "@team1"
+        position: "@position3"
+        name: Dominik Burek
+        bornDate: <dateTimeBetween('-30 years', '-15 years')>
+    player16:
+        team: "@team1"
+        position: "@position4"
+        name: Dawid Kręcisz
+        bornDate: <dateTimeBetween('-30 years', '-15 years')>
+        number: 11 
+    player17:
+        team: "@team1"
+        position: "@position4"
+        name: Dawid Bartoś
+        bornDate: <dateTimeBetween('-30 years', '-15 years')>
+    player18:
+        team: "@team1"
+        position: "@position4"
+        name: Arkadiusz Król
+        bornDate: <dateTimeBetween('-30 years', '-15 years')> 
+    player19:
+        team: "@team1"
+        position: "@position4"
+        name: Kamil Kozak
+        bornDate: <dateTimeBetween('-30 years', '-15 years')>     
+
+Club\GameBundle\Entity\PlayerStats:
+    statsPlayer1:
+        player: "@player1"
+        season: "@season1"
+    statsPlayer2:
+        player: "@player2"
+        season: "@season1"
+    statsPlayer3:
+        player: "@player3"
+        season: "@season1"
+    statsPlayer4:
+        player: "@player4"
+        season: "@season1"
+    statsPlayer5:
+        player: "@player5"
+        season: "@season1"
+    statsPlayer6:
+        player: "@player6"
+        season: "@season1"
+    statsPlayer7:
+        player: "@player7"
+        season: "@season1"
+    statsPlayer8:
+        player: "@player8"
+        season: "@season1"
+    statsPlayer9:
+        player: "@player9"
+        season: "@season1"
+    statsPlayer10:
+        player: "@player10"
+        season: "@season1"
+    statsPlayer11:
+        player: "@player11"
+        season: "@season1"
+    statsPlayer12:
+        player: "@player12"
+        season: "@season1"
+    statsPlayer13:
+        player: "@player13"
+        season: "@season1"
+    statsPlayer14:
+        player: "@player14"
+        season: "@season1"
+    statsPlayer15:
+        player: "@player15"
+        season: "@season1"
+    statsPlayer16:
+        player: "@player16"
+        season: "@season1"
+    statsPlayer17:
+        player: "@player17"
+        season: "@season1"
+    statsPlayer18:
+        player: "@player18"
+        season: "@season1"
+    statsPlayer19:
+        player: "@player19"
+        season: "@season1"
+  
+Club\GameBundle\Entity\TeamStats:
+    statsTeam1:
+        team: "@team1"
+        season: "@season1"
+    statsTeam2:
+        team: "@team2"
+        season: "@season1"
+    statsTeam3:
+        team: "@team3"
+        season: "@season1"
+    statsTeam4:
+        team: "@team4"
+        season: "@season1"
+    statsTeam5:
+        team: "@team5"
+        season: "@season1"
+    statsTeam6:
+        team: "@team6"
+        season: "@season1"
+    statsTeam7:
+        team: "@team7"
+        season: "@season1"
+    statsTeam8:
+        team: "@team8"
+        season: "@season1"
+    statsTeam9:
+        team: "@team9"
+        season: "@season1"
+    statsTeam10:
+        team: "@team10"
+        season: "@season1"
+
+Club\GameBundle\Entity\Matches:
+    matches{1..20}:
+        teamHome: "@team*"
+        teamAway: "@team*"
+        season: "@season1"
+        scoreForHome:  <numberBetween(1, 10)>
+        scoreForAway:  <numberBetween(1, 10)>
+        date: <dateTimeBetween('-30 days', '-15 days')>
+        round: "@round*"
+          
+
+Club\GameBundle\Entity\Scores:
+    scores_{1..10}:
+        player: "@player*"
+        matches: "@matches*"
+        numGoals: <numberBetween(1, 5)>
+
+Club\GameBundle\Entity\Assists:
+    assists_{1..10}:
+        player: "@player*"
+        matches: "@matches*"
+        numAssists: <numberBetween(1, 4)>

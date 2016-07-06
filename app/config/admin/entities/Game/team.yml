@@ -1,0 +1,50 @@
+easy_admin:
+    entities:
+        Team:
+            class: Club\GameBundle\Entity\Team
+            label: 'Drużyny'
+            edit:
+                title: "Edytuj drużyne"
+            list:
+                actions: 
+                    - { name: 'new', label: 'Dodaj drużyne',icon: 'plus'}
+                    - { name: 'show', label: '', icon: 'eye' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                title: "Lista drużyn"
+                fields: 
+                    - { property: 'name', label: 'Nazwa' }
+                    - { property: 'adress', label: 'Adres' }
+                    - { property: 'about', label: 'info' }
+                    - { property: 'colors', label: 'Barwy' }
+                    - { property: 'phone', label: 'Telefon',type: 'tel' }
+                    - { property: 'crest', label: 'Herb', type: 'image' }
+                    - { property: 'creationDate', label: 'Data założenia', type: 'date' }
+            show:
+                title: 'Szczegóły drużyny'
+                fields:
+                     - { property: 'name', label: 'Nazwa' }
+                     - { property: 'adress', label: 'Adres' }
+                     - { property: 'about', label: 'info' }
+                     - { property: 'colors', label: 'Barwy' }
+                     - { property: 'phone', label: 'Telefon',type: 'tel' }
+                     - { property: 'email', label: 'Email',type: 'email' }
+                     - { property: 'crest', label: 'Herb', type: 'image' }
+                     - { property: 'creationDate', label: 'Data założenia', type: 'date' }
+                     - { property: 'teamHome', label: 'Mecze u siebie' }
+                     - { property: 'teamAway', label: 'Mecze na wyjeździe' }
+                     - { property: 'teamStats', label: 'Statystyki' }
+                     - { property: 'season', label: 'Sezon' }
+                      
+            form:
+                title: "Dodaj drużyne"
+                fields: 
+                    - { property: 'name', label: 'Nazwa' }
+                    - { property: 'adress', label: 'Adres' }
+                    - { property: 'about', label: 'info', type: 'ckeditor'}
+                    - { property: 'colors', label: 'Barwy' }
+                    - { property: 'phone', label: 'Telefon'}
+                    - { property: 'crestFile', label: 'Herb', type: 'file' }
+                    - { property: 'creationDate', label: 'Data założenia', type: 'date' }
+            
+        

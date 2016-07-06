@@ -1,0 +1,24 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+    <div class="row">
+        <div class="col-md-8 col-sm-8 col-xs-8">
+            {% if invalid_username is defined %}
+                <ul class="kopa-alert alert alert-danger alert-dismissable">
+                    <li>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</li>
+                </ul>
+            {% endif %}
+            <label for="username" class="input-label">{{ 'resetting.request.username'|trans }}</label>
+            <input type="text" id="username" class="valid" name="username" required="required" onfocus="if(this.value=='')this
+            .value='';" onblur="if(this.value=='')this.value='';"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-sm-8 col-xs-8">
+            <p class="contact-button clearfix ">
+                <span> <input type="submit" id="submit-contact" value="{{ 'resetting.request.submit'|trans }}"/></span>
+            </p>
+        </div>
+    </div>
+</form>
+

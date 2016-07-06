@@ -1,0 +1,38 @@
+services:
+    club_blog.twig_extension:
+        class: Club\BlogBundle\Twig\Extension\BlogExtension
+        arguments: ["@doctrine"]
+        public: true
+        
+        tags:
+            - { name: twig.extension }
+
+    api_exception_subscriber:
+        class: Club\BlogBundle\EventListener\ApiExceptionSubscriber
+        arguments: ['%kernel.debug%', '@api.response_factory']
+        tags:
+            - { name: kernel.event_subscriber }
+            
+    pagination_factory:
+        class: Club\BlogBundle\Pagination\PaginationFactory
+        arguments: ['@router']
+        
+    link_serialization_subscriber:
+        class: Club\BlogBundle\Serializer\LinkSerializationSubscriber
+        tags:
+            - { name: jms_serializer.event_subscriber }
+        arguments: ['@router', '@annotations.reader']
+        
+    jwt_token_authenticator:
+        class: Club\BlogBundle\Security\JwtTokenAuthenticator
+        autowire: true
+        
+    api.response_factory:
+        class: Club\BlogBundle\Api\ResponseFactory
+        
+    custom_hateoas_json_serializer:
+        class: Club\BlogBundle\Serializer\CustomHATEOASJsonSerializer
+        
+    club_blog_base_controller:
+        class: Club\BlogBundle\Controller\BaseController
+        

@@ -1,0 +1,47 @@
+easy_admin:
+    entities:
+        Matches:
+            class: Club\GameBundle\Entity\Matches
+            label: 'Mecze'
+            edit:
+                title: "Edytuj mecz"
+            list:
+                title: "Lista meczy"
+                actions: 
+                    - { name: 'new', label: 'Dodaj mecz',icon: 'plus'}
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                fields: 
+                    - { property: 'date', label: 'Data' }
+                    - { property: 'teamHome', label: 'Dom' }
+                    - { property: 'score', label: 'Wynik' }
+                    - { property: 'teamAway', label: 'Wyjazd' }
+                    - { property: 'season', label: 'Sezon' }
+                    - { property: 'round', label: 'Kolejka' }
+                    
+            show:
+                title: "Statystyki meczu"
+                fields: 
+                    - { property: 'date', label: 'Data' }
+                    - { property: 'teamHome', label: 'Dom' }
+                    - { property: 'score', label: 'Wynik' }
+                    - { property: 'teamAway', label: 'Wyjazd' }
+                    - { property: 'season', label: 'Sezon' }
+                    - { property: 'round', label: 'Kolejka' }
+                    
+            form:
+                title: "Dodaj mecz"
+                fields: 
+                    - { property: 'date', label: 'Data', type: 'datetime' }
+                    - { property: 'teamHome', label: 'Dom' }
+                    - { property: 'teamAway', label: 'Wyjazd' }
+                    - { property: 'season', label: 'Sezon' }
+                    - { property: 'round', label: 'Kolejka' }
+                    - { property: 'scoreForHome', label: 'Wynik  gospodarzy' }
+                    - { property: 'scoreForAway', label: 'Wynik  gości' }
+                    - { property: 'yellowCards', label: 'Zółte kartki' }
+                    - { property: 'redCards', label: 'Czerwone kartki' }
+                    - { property: 'squad', label: 'Skład' }
+                    #- { property: 'goal', label: 'Scores' }
+
+                    

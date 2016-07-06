@@ -1,0 +1,33 @@
+easy_admin:
+    design:
+        menu: 
+            - { label: 'Strona główna', route: 'blog_posts_index' }
+            
+            - label: 'Blog'
+              icon: 'arrow-right'
+              children:
+              - { entity: 'Post',icon: 'file-text', default: true }
+              - { entity: 'Category', icon: 'tag' }
+              - { entity: 'Comment',  icon: 'comments' }
+              
+            - { entity: 'User', icon: 'user' }
+                                                            
+            - label: 'Zawodnicy'
+              icon: 'arrow-right'
+              children:
+              - { entity: 'Player',icon: 'users', label: 'Lista zawodników' }
+              - { entity: 'PlayerStats', icon: 'info', label: 'Statystyki zawodników' }
+              - { entity: 'Position', icon: 'location-arrow', label: 'Pozycje' }
+              
+            - label: 'Rozgrywki'
+              icon: 'arrow-right'
+              children:
+              - { entity: 'Team',  icon: 'comments' , params: { sortField: 'id', sortDirection: 'ASC' }}
+              - { entity: 'Season',  icon: 'calendar', label: 'Sezon' }
+              #- { entity: 'Round', label: 'Kolejki', icon: 'comments', params: { sortField: 'id', sortDirection: 'ASC' }}
+              - { entity: 'TeamStats',  icon: 'list-ol',  label: 'Tabela', params: { sortField: 'points', sortDirection: 'DESC' } }
+              - { entity: 'Matches',  icon: 'trophy', label: 'Mecze' }
+              - { entity: 'Scores',  icon: 'user-plus',label: 'Strzelcy' }
+              - { entity: 'Assists',  icon: 'yelp', label: 'Asysty'}
+
+              

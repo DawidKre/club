@@ -1,0 +1,63 @@
+{% extends 'ClubBlogBundle::layout.html.twig' %}
+
+{% block pageTitle %}
+    {{ siteTitle }} {{ parent() }}
+{% endblock %}
+
+{% block newsBar %}
+    {{ print_news_bar() }}
+{% endblock %}
+
+{% block body %}
+    <div class="kopa-main-col">
+        <div class="kopa-breadcrumb">
+            <div class="wrapper clearfix">
+                <span itemtype="http://data-vocabulary.org/Breadcrumb" itemscope="">
+                    <a itemprop="url" href="single-team.html#">
+                        <span itemprop="title">Home</span>
+                    </a>
+                </span>
+                    &nbsp;|&nbsp;
+                <span itemtype="http://data-vocabulary.org/Breadcrumb" itemscope="">
+                    <a itemprop="url" href="single-player.html#">
+                        <span itemprop="title">player</span>
+                    </a>
+                </span>
+                    &nbsp;|&nbsp;
+                <span itemtype="http://data-vocabulary.org/Breadcrumb" itemscope="">
+                    <a itemprop="url" class="current-page">
+                        <span itemprop="title">{{ siteTitle }}</span>
+                    </a>
+                </span>
+            </div>
+        </div>
+        <!--/end .breadcrumb-->
+        <div class="kopa-entry-post">
+            <article class="entry-item">
+                <h3 class="element-title">Info<span class="ttg"></span></h3>
+                <h4 class="entry-title">{{ siteTitle }}</h4>
+                <p></p>
+                <div class="player-profile">
+                    <h3>Imię i nazwisko {{ player.name }}</h3>
+                    <ul class="clearfix">
+                        <li>
+                            <div class="p-left">Data urodzenia:</div>
+                            <div class="p-right">{{ player.bornDate | date('d/m/Y') }}</div>
+                        </li>
+                        <li>
+                            <div class="p-left">Numer:</div>
+                            <div class="p-right">{{ player.number }}</div>
+                        </li>
+                        <li>
+                            <div class="p-left">Drużyna:</div>
+                            <div class="p-right">{{ player.team.name }}</div>
+                        </li>
+                    </ul>
+                </div>
+                <h3 class="element-title">Zdjęcie<span class="ttg"></span></h3>
+                <p><img src="{{ asset(player.photo) }}" alt="" style="max-width: 150px; max-height: 200px;"></p>
+            </article>
+        </div>
+        <!-- kopa-entry-post -->
+    </div>
+{% endblock %}

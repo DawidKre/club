@@ -1,0 +1,84 @@
+{% extends 'ClubBlogBundle::layout.html.twig' %}
+
+{% block pageTitle %}
+    {{ pageTitile }}
+{% endblock %}
+
+{% block newsBar %}
+    {{ print_news_bar() }}
+{% endblock %}
+
+{% block body %}
+<div class="kopa-main-col">
+    <div class="widget kopa-comment-form-widget" id="new_comment">
+    <h3 class="widget-title style12">Kontakt<span class="ttg"></span></h3>
+        <div style="margin-bottom: 20px;">
+            {% include '@ClubBlog/Template/flashMsg.html.twig' %}
+        </div>
+    <div class="comment-box">
+        {{ form_start(form, {'action': '#comments', 'attr': {'novalidate':'novalidate','class':'clearfix'}}) }}
+        {% form_theme form  '@ClubBlog/Form/comment_layout.html.twig' %}
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                {% if app.user %}
+                <p class="input-block"><span style="color:red;">(*)</span>
+                    {{ form_row(form.name, {'attr': {
+                        'onfocus': "if(this.value=='')this.value='';",
+                        'onblur': "if(this.value=='')this.value='';",
+                        'class': 'valid',
+                        'readonly': 'readonly'}
+                    }) }}
+                    {% else %}
+                <p class="input-block"><span style="color:red;">(*)</span>
+                    {{ form_row(form.name, {'attr': {
+                        'onfocus': "if(this.value=='')this.value='';",
+                        'onblur': "if(this.value=='')this.value='';",
+                        'class': 'valid'}
+                    }) }}
+                    {% endif %}
+                </p>
+            </div>
+            <!-- col-md-4 -->
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <p class="input-block">
+                    {% if app.user %}
+                        {{ form_row(form.email, {'attr': {
+                            'onfocus': "if(this.value=='')this.value='';",
+                            'onblur': "if(this.value=='')this.value='';",
+                            'class': 'valid',
+                            'readonly': 'readonly'}
+                        }) }}
+                    {% else %}
+                        {{ form_row(form.email, {'attr': {
+                            'onfocus': "if(this.value=='')this.value='';",
+                            'onblur': "if(this.value=='')this.value='';",
+                            'class': 'valid'}
+                        }) }}
+                    {% endif %}
+                </p>
+            </div>
+            <!-- col-md-4 -->
+        </div>
+        <!-- row -->
+        <p class="textarea-block">
+            {{ form_row(form.message, {'attr': {
+                'onfocus': "if(this.value=='')this.value='';",
+                'onblur': "if(this.value=='')this.value='';",
+                'class': 'valid'}
+            }) }}
+        </p>
+        <p class="comment-button clearfix">
+                            <span>
+                                <input type="submit" value="Wyślij" id="submit-comment">
+                                <div class="hidden">
+                                    {{ form_row(form.save, {'attr': {'value': 'Prześlij'}}) }}
+                                </div>
+                            </span>
+        </p>
+        {{ form_end(form) }}
+        <div id="response"></div>
+    </div>
+    <!-- comment-box -->
+</div>
+</div>
+{% endblock %}

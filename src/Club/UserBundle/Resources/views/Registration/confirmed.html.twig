@@ -1,0 +1,17 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+{% set pageTitle = 'Potwierdzenie' %}
+{% block pageTitle %}
+    {{ pageTitle }} {{ parent() }}
+{% endblock %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    <div class="col-md-8 col-sm-8 col-xs-8">
+        <ul class="kopa-alert alert alert-success alert-dismissable">
+            <li>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</li>
+        </ul>
+    </div>
+    {% if targetUrl %}
+        <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
+    {% endif %}
+{% endblock fos_user_content %}

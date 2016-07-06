@@ -1,0 +1,48 @@
+game_blog_club:
+    resource:   "@ClubGameBundle/Controller/ClubController.php"
+    type:       annotation
+game_blog_games:
+    resource:   "@ClubGameBundle/Controller/GamesController.php"
+    type:       annotation
+api_game_player:
+    type: rest
+    prefix: /api
+    resource: "@ClubGameBundle/Controller/Api/PlayerController.php"
+    methods: [POST]
+api_game_position:
+    type: rest
+    prefix: /api
+    resource: "@ClubGameBundle/Controller/Api/PositionController.php"
+api_game_team:
+    type: rest
+    prefix: /api
+    resource: "@ClubGameBundle/Controller/Api/TeamController.php"
+    methods: [POST]
+api_game_assists:
+    type: rest
+    prefix: /api
+    resource: "@ClubGameBundle/Controller/Api/AssistsController.php"
+api_game_scores:
+    type: rest
+    prefix: /api
+    resource: "@ClubGameBundle/Controller/Api/ScoresController.php"
+api_game_player_stats:
+    type: rest
+    prefix: /api
+    resource: "@ClubGameBundle/Controller/Api/PlayerStatsController.php"
+api_game_matches:
+    type: rest
+    prefix: /api
+    resource: "@ClubGameBundle/Controller/Api/MatchesController.php"
+api_game_round:
+    type: rest
+    prefix: /api
+    resource: "@ClubGameBundle/Controller/Api/RoundController.php"
+api_game_season:
+    type: rest
+    prefix: /api
+    resource: "@ClubGameBundle/Controller/Api/SeasonController.php"
+api_game_team_stats:
+    type: rest
+    prefix: /api
+    resource: "@ClubGameBundle/Controller/Api/TeamStatsController.php"

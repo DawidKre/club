@@ -1,0 +1,69 @@
+{% extends 'ClubBlogBundle::layout.html.twig' %}
+
+{% block pageTitle %}
+    {{ siteTitle }} {{ parent() }}
+{% endblock %}
+
+{% block newsBar %}
+    {{ print_news_bar() }}
+{% endblock %}
+
+{% block body %}
+    <div class="kopa-main-col">
+        <div class="kopa-breadcrumb">
+            <div class="wrapper clearfix">
+                <span itemtype="http://data-vocabulary.org/Breadcrumb" itemscope="">
+                    <a itemprop="url" href="fixtures-results.html#">
+                        <span itemprop="title">Home</span>
+                    </a>
+                </span>
+                    &nbsp;|&nbsp;
+                <span itemtype="http://data-vocabulary.org/Breadcrumb" itemscope="">
+                    <a itemprop="url" class="current-page">
+                        <span itemprop="title">{{ siteTitle }}</span>
+                    </a>
+                </span>
+            </div>
+        </div>
+        <h3 class="element-title">{{ rounds.0.seasonName }}<span class="ttg"></span></h3>
+        <div class="tab-content ft-tab-content mb-30">
+            <!-- tab-pane -->
+            <div class="tab-pane active" id="table">
+                {% for round in rounds %}
+                    <div class="widget kopa-charts-widget">
+                        <h3 class="widget-title style17">{{ round.roundName }}</h3>
+                        <div class="widget-content">
+                            <header>
+                                <div class="t-col width3">Lp.</div>
+                                <div class="t-col width2">Gospodarze</div>
+                                <div class="t-col width3 ">Wynik</div>
+                                <div class="t-col width2">Goście</div>
+                                <div class="t-col width2">Data</div>
+                                <div class="t-col width3">Godzina</div>
+                            </header>
+                            <ul class="clearfix">
+                                {% set i = 1 %}
+                                {% for match in round.rounds.matches %}
+                                    {% if (match.teamHome == 'Draco Kowala') or (match.teamAway == 'Draco Kowala') %}
+                                        <li style="color:black">
+                                    {% else %}
+                                        <li>
+                                    {% endif %}
+                                    <div class="t-col width3">{{ i }}</div>
+                                    <div class="t-col width2">{{ match.teamHome|truncate(16,true, ".") }}</div>
+                                    <div class="t-col width3 ">{{ match.score }}</div>
+                                    <div class="t-col width2">{{ match.teamAway|truncate(16,true, ".") }}</div>
+                                    <div class="t-col width2">{{ match.date | date('d-m-Y') }}</div>
+                                    <div class="t-col width3">{{ match.date | date('H:i') }}</div>
+                                    </li>
+                                {% set i = i+1 %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <!-- tab-pane -->
+        </div>
+    </div>
+{% endblock %}

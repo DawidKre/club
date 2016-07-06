@@ -1,0 +1,26 @@
+easy_admin:
+    entities:
+        Scores:
+            class: Club\GameBundle\Entity\Scores
+            label: 'Strzelcy'
+            edit:
+                title: "Edytuj strzelców"
+            list:
+                actions: 
+                    - { name: 'new', label: 'Dodaj strzelców',icon: 'plus'}
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                title: "Lista meczy"
+                fields: 
+                    - { property: 'matches.name', label: 'Mecz' }
+                    - { property: 'matches.score', label: 'Wynik' }
+                    - { property: 'matches.date', label: 'Data meczu', type: 'date' }
+                    - { property: 'player', label: 'Zawodnik' }
+                    - { property: 'numGoals', label: 'Liczba Goli' }
+                    
+            form:
+                title: "Dodaj strzelców"
+                fields:
+                    - { property: 'matches', label: 'Mecz' }
+                    - { property: 'player', label: 'Zawodnik' }
+                    - { property: 'numGoals', label: 'Liczba Goli' }

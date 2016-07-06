@@ -1,0 +1,4 @@
+services:
+#    club_user.example:
+#        class: Club\UserBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

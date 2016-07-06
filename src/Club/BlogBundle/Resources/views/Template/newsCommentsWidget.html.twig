@@ -1,0 +1,48 @@
+<div class="widget kopa-tab-1-widget" id="newsCommentsWidget">
+    <div class="kopa-tab style6">
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="#headlines" data-toggle="tab"><span>Aktualności</span></a>
+            </li>
+            <li>
+                <a href="#news" data-toggle="tab"><span>Najnowsze komentarze</span></a>
+            </li>
+        </ul>
+        <!-- nav-tabs -->
+        <div class="tab-content">
+            <div class="tab-pane active" id="headlines">
+                <ul class="kopa-list clearfix">
+                    {% if postsList %}
+                    {% for post in postsList %}
+                        <li id="headline">
+                            <a href="{{ path('blog_posts_post', {'slug': post.slug}) }}">{{ post.title }}</a>
+                        </li>
+                    {% endfor %}
+                    {% else %}
+                        <li id="new">
+                            Brak aktualności
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <!-- tab-pane -->
+            <div class="tab-pane" id="news">
+                <ul class="kopa-list clearfix">
+                    {% if commentList %}
+                        {% for comment in commentList %}
+                            <li id="new">
+                                <a href="{{ path('blog_posts_post', {'slug': comment.post.slug}) }}#comments">{{ comment.comment| truncate(100, true, "...") | raw }}</a>
+                            </li>
+                        {% endfor %}
+                    {% else %}
+                        <li id="new">
+                            Brak komentarzy
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <!-- tab-pane -->
+        </div>
+    </div>
+    <!-- kopa-tab -->
+</div>

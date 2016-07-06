@@ -1,0 +1,51 @@
+easy_admin:
+    entities:
+        TeamStats:
+            class: Club\GameBundle\Entity\TeamStats
+            label: 'Tabela'
+            list:
+                actions: 
+                    - { name: '-new', label: 'Dodaj drużyne',icon: 'plus'}
+                    - { name: 'show', label: '', icon: 'eye' }
+                    - { name: '-edit', label: '', icon: 'edit' }
+                    - { name: '-delete', label: '', icon: 'trash' }
+                title: "Tabela"
+                fields: 
+                    - { property: 'team', label: 'Klub' }
+                    #- { property: 'season', label: 'Sezon' }
+                    - { property: 'points', label: 'Punkty' }
+                    - { property: 'matches', label: 'Mecze' }
+                    - { property: 'wins', label: 'Wygrane' }
+                    - { property: 'draws', label: 'Remisy' }
+                    - { property: 'loses', label: 'Przegrane' }                    
+                    - { property: 'goalsScored', label: 'Gole strzelone' }
+                    - { property: 'goalsLost', label: 'Gole stracone' }
+                    - { property: 'bilans', label: 'Bilans' }
+            show:
+                title: 'Szczegóły statystyk drużyny'
+                fields:
+                    - { property: 'team', label: 'Klub' }
+                    - { property: 'season', label: 'Sezon' }
+                    - { property: 'points', label: 'Punkty' }
+                    - { property: 'matches', label: 'Mecze' }
+                    - { property: 'wins', label: 'Wygrane' }
+                    - { property: 'draws', label: 'Remisy' }
+                    - { property: 'loses', label: 'Przegrane' }                    
+                    - { property: 'goalsScored', label: 'Gole strzelone' }
+                    - { property: 'goalsLost', label: 'Gole stracone' }
+                    - { property: 'bilans', label: 'Bilans' }
+            form:
+                title: "Statystyki"
+                fields: 
+                    - { property: 'team', label: 'Klub' }
+                    - { property: 'season', label: 'Sezon' }
+                    - { property: 'matches', label: 'Mecze' }
+                    - { property: 'wins', label: 'Wygrane' }
+                    - { property: 'draws', label: 'Remisy' }
+                    - { property: 'loses', label: 'Przegrane' }
+                    - { property: 'points', label: 'Punkty' }
+                    - { property: 'goalsScored', label: 'Gole strzelone' }
+                    - { property: 'goalsLost', label: 'Gole stracone' }
+                    - { property: 'bilans', label: 'Bilans' }
+            
+ 

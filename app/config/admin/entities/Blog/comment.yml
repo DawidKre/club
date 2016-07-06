@@ -1,0 +1,29 @@
+easy_admin:
+    entities:
+        Comment: 
+            class: Club\BlogBundle\Entity\Comment
+            label: 'Komentarze'
+            show:
+                actions: ['-edit', '-new']
+            list:
+                actions:
+                    - { name: 'show', label: '', icon: 'eye' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                    - { name: '-edit'}
+                    - { name: '-new'}
+                title: "Lista Komentarzy"     
+                fields:
+                    - { property: 'user', label: 'Autor' }
+                    - { property: 'comment', label: 'Komentarz'}
+                    - { property: 'post', label: 'Post'}
+                    - { property: 'createDate', label: 'Data utworzenia' }
+                    - { property: 'email', label: 'Email', type: 'email'}
+                    - { property: 'isDeleted', label: 'Usunięty'}
+            form:
+                fields:
+                    - { property: 'user', label: 'Autor' }
+                    - { property: 'post', label: 'Post'}
+                    - { property: 'email', label: 'Email', type: 'email' }
+                    - { property: 'comment', label: 'Komentarz', type: 'text'}
+                
+        

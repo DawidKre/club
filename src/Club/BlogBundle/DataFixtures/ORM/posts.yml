@@ -1,0 +1,40 @@
+Club\BlogBundle\Entity\Category:
+    category1:
+        name: mecz
+    category2:
+        name: ogolne
+
+
+Club\UserBundle\Entity\User:
+    user1:
+        username: admin
+        email: admin@com.pl
+        enabled: 1
+        plainPassword: admin
+
+    user2:
+        username: user
+        email: user@com.pl
+        enabled: 1
+        plainPassword: user
+
+Club\BlogBundle\Entity\Post:
+    post1:
+        category: "@category2"
+        author: '@user*'
+        title: Post1
+        content: Vae, bassus pulchritudine!Ridetis unus ducunt ad festus bursa.
+
+    post{2..4}:
+        isMatch: <boolean(50)>
+        category: "@category*"
+        author: '@user*'
+        title: <sentence($nbWords = 6, $variableNbWords = true)>
+        content: <text($maxNbChars = 2000)>
+
+Club\BlogBundle\Entity\Comment:
+    comment{2..100}:
+        post: '@post*'
+        author: '@user*'
+        comment: <text($maxNbChars = 200)>
+        user: '@user*'

@@ -1,0 +1,16 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr':{'class':'fos_user_registration_register','novalidate': 'novalidate'}}) }}
+
+{{ form_row(form.email) }}
+{{ form_widget(form) }}
+
+
+<div class="col-md-8 col-sm-8 col-xs-8">
+    <p class="contact-button clearfix ">
+        <span> <input type="submit" id="submit-contact" value="{{ 'registration.submit'|trans }}"/></span>
+    </p>
+</div>
+
+{{ form_end(form) }}
+

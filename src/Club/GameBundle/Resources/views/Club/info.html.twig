@@ -1,0 +1,83 @@
+{% extends 'ClubBlogBundle::layout.html.twig' %}
+
+{% block pageTitle %}
+    {{ siteTitle }} {{ parent() }}
+{% endblock %}
+
+{% block newsBar %}
+    {{ print_news_bar() }}
+{% endblock %}
+
+{% block body %}
+    <div class="kopa-main-col">
+        <div class="kopa-breadcrumb">
+            <div class="wrapper clearfix">
+                <span itemtype="http://data-vocabulary.org/Breadcrumb" itemscope="">
+                    <a itemprop="url" href="{{ path('blog_posts_index') }}">
+                        <span itemprop="title">Home</span>
+                    </a>
+                </span>
+                    &nbsp;|&nbsp;
+                <span itemtype="http://data-vocabulary.org/Breadcrumb" itemscope="">
+                    
+                        <span itemprop="title">team</span>
+                    
+                </span>
+                    &nbsp;|&nbsp;
+                <span itemtype="http://data-vocabulary.org/Breadcrumb" itemscope="">
+                    <a itemprop="url" class="current-page">
+                        <span itemprop="title">{{ siteTitle }}</span>
+                    </a>
+                </span>
+            </div>
+        </div>
+        <!--/end .breadcrumb-->
+        <div class="kopa-entry-post">
+            <article class="entry-item">
+                <h3 class="element-title">Info<span class="ttg"></span></h3>
+                <h4 class="entry-title">{{ siteTitle }}</h4>
+                <p>{{ team.about| raw }}</p>
+                <div class="player-profile">
+                    <h3>Profil drużyny {{ team.name }}</h3>
+                    <ul class="clearfix">
+                        <li>
+                            <div class="p-left">Data założenia:</div>
+                            <div class="p-right">{{ team.creationDate | date('d/m/Y') }}</div>
+                        </li>
+                        <li>
+                            <div class="p-left">Adres:</div>
+                            <div class="p-right">{{ team.adress }}</div>
+                        </li>
+                        <li>
+                            <div class="p-left">Telefon:</div>
+                            <div class="p-right">{{ team.phone }}</div>
+                        </li>
+                        <li>
+                            <div class="p-left">Email:</div>
+                            <div class="p-right" style="text-transform: lowercase">{{ team.email |lower }}</div>
+                        </li>
+                        <li>
+                            <div class="p-left">Barwy:</div>
+                            <div class="p-right">{{ team.colors }}</div>
+                        </li>
+                        <li>
+                            <div class="p-left">Facebook</div>
+                        </li>
+                    </ul>
+                    <div class="player-social">
+                        <div class="">
+                            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ffcdracokowala%2F&tabs&width=330&height=130&small_header=false&adapt_container_width=false&hide_cover=false&show_facepile=false&appId"
+                                    width="330" height="130" style="border:none;overflow:hidden" scrolling="no"
+                                    frameborder="0" allowTransparency="true">
+                            </iframe>
+                        </div>
+
+                    </div>
+                </div>
+                <h3 class="element-title">Herb<span class="ttg"></span></h3>
+                <p><img src="{{ asset(team.crest) }}" alt="" style="max-width: 150px; max-height: 200px;"></p>
+            </article>
+        </div>
+        <!-- kopa-entry-post -->
+    </div>
+{% endblock %}

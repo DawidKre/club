@@ -1,0 +1,32 @@
+api_club_blog_token:
+    resource:   "@ClubBlogBundle/Controller/Api/TokenController.php"
+    type:       annotation
+    defaults:
+        _format: json
+club_blog_pages:
+    resource:   "@ClubBlogBundle/Controller/PagesController.php"
+    type:       annotation
+club_blog_category:
+    resource:   "@ClubBlogBundle/Controller/CategoryController.php"
+    type:       annotation
+club_blog_posts:
+    resource:   "@ClubBlogBundle/Controller/PostsController.php"
+    type:       annotation
+
+api_club_blog_category:
+    resource:   "@ClubBlogBundle/Controller/Api/CategoryController.php"
+    type:       annotation
+    defaults:
+        _format: json
+        
+api_club_blog_posts:
+    resource:   "@ClubBlogBundle/Controller/Api/PostController.php"
+    type:       annotation
+    defaults:
+        _format: json
+api_club_blog_comments:
+    resource:   "@ClubBlogBundle/Controller/Api/CommentController.php"
+    type:       annotation
+    defaults:
+        _format: json
+

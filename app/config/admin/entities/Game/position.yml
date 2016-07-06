@@ -1,0 +1,31 @@
+easy_admin:
+    entities:
+        Position:
+            class: Club\GameBundle\Entity\Position
+            label: 'Pozycje'
+            edit:
+                title: "Edytuj pozycje"
+            list:
+                actions: 
+                    - { name: 'new', label: 'Dodaj pozycje',icon: 'plus'}
+                    - { name: 'show', label: '', icon: 'eye' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                title: "Lista pozycji"
+                fields: 
+                    - { property: 'name', label: 'Nazwa' }
+                    - { property: 'positionOrder', label: 'Kolejność pozycji' }
+                    - { property: 'player', label: 'Liczba zawodników' }
+            show:
+                fields: 
+                    - { property: 'name', label: 'Nazwa' }
+                    - { property: 'positionOrder', label: 'Kolejność pozycji' }
+                    - { property: 'player', label: 'Lista zawodników' }
+            form:
+                title: "Dodaj zawodnika"
+                fields: 
+                    - { property: 'name', label: 'Nazwa' }
+                    - { property: 'positionOrder', label: 'Kolejność pozycji' }
+                    #- { property: 'player', label: 'Liczba zawodników' }
+
+   

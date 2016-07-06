@@ -1,0 +1,30 @@
+easy_admin:
+    entities:
+        Category:
+            class: Club\BlogBundle\Entity\Category
+            label: 'Kategorie'
+            edit:
+                title: "Edytuj kategorie"
+            list:
+                actions: 
+                    - { name: 'new', label: 'Dodaj kategorie',icon: 'plus'}
+                    - { name: 'show', label: '', icon: 'eye' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                title: "Lista Kategorii"
+                fields: 
+                    - { property: 'name', label: 'Nazwa' }
+                    - { property: 'posts', label: 'Liczba przypisanych postów' }
+            show:
+                title: 'Pokaż komentarz'
+                fields: 
+                    - { property: 'id', label: 'Id' }
+                    - { property: 'name', label: 'Nazwa' }
+                    - { property: 'slug', label: 'Slug' }
+                    - { property: 'posts', label: 'Lista przypisanych postów' }
+                    
+            form:
+                title: "Dodaj kategorie"
+                fields:
+                    - { property: 'name', label: 'Nazwa' }
+            

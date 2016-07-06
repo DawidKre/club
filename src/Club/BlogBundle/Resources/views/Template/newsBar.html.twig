@@ -1,0 +1,43 @@
+<div class="main-top"
+        {% if (app.request.get('_route')) != 'blog_posts_index' %}
+            style="margin-top: 150px;"
+        {% endif %} >
+    <div class="kopa-ticker">
+        <span class="ticker-title"><i class="fa fa-angle-double-right"></i>Breaking news</span>
+        <div class="ticker-wrap">
+            <dl class="ticker-1">
+                <dt></dt>
+                {% if lastRound| length >1 %}
+                    {% for match in lastRound %}
+                        <dd>
+                            <a href="">{{ match.teamHomeName }} <span style="color:black;">{{ match.score }} </span> {{ match.teamAwayName }}</a>
+                        </dd>
+                    {% endfor %}
+                {% elseif lastRound| length == 1 %}
+                    {% for match in lastRound %}
+                        <dd>
+                            <a href="">{{ match.teamHomeName }} <span style="color:black;">{{ match.score }} </span> {{ match.teamAwayName }}</a>
+                        </dd>
+                        <dd>
+                            <a href="">{{ match.teamHomeName }} <span style="color:black;">{{ match.score }} </span> {{ match.teamAwayName }}</a>
+                        </dd>
+                        <dd>
+                            <a href="">{{ match.teamHomeName }} <span style="color:black;">{{ match.score }} </span> {{ match.teamAwayName }}</a>
+                        </dd>
+                    {% endfor %}
+                {% else %}
+                    <dd><a href=""> Brak meczy </a></dd>
+                    <dd><a href=""> Brak meczy </a></dd>
+                    <dd><a href=""> Brak meczy </a></dd>
+                {% endif %}
+            </dl>
+            <!--ticker-1-->
+        </div>
+    </div>
+    <!-- kopa-ticker -->
+    <div class="social-links style1">
+        <ul class="clearfix">
+            <li><a href="https://www.facebook.com/fcdracokowala/" class="fa fa-facebook" target="_blank"></a></li>
+        </ul>
+    </div>
+</div>

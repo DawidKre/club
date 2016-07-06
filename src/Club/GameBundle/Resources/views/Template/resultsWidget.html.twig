@@ -1,0 +1,68 @@
+<div class="widget kopa-charts-widget style1" id="results">
+    <h3 class="widget-title style14">
+        <span>Wyniki</span>
+        <a href="{{ path('game_games_games') }}">Więcej <span class="fa fa-chevron-right"></span></a>
+    </h3>
+    <div class="widget-content">
+        <header>
+            <div class="t-col width1">Ostatnia kolejka
+                {% if lastRound %}
+                    {{ lastRound.0.date | date('d.m.Y') }}
+                {% endif %}
+            </div>
+        </header>
+        <ul class="clearfix">
+            {% if lastRound %}
+            {% for match in lastRound %}
+                {% if (match.teamHomeName == 'Draco Kowala') or (match.teamAwayName == 'Draco Kowala') %}
+                    <li style="color:black">
+                {% else %}
+                    <li>
+                {% endif %}
+                <div class="t-col"
+                     style="width: 42%; text-align: left">{{ match.teamHomeName |truncate(9,true, ".") }}</div>
+                        <div class="t-col" style="width: 16%; text-align: center">{{ match.score }}</div>
+                <div class="t-col"
+                     style="width: 42%; text-align: left">{{ match.teamAwayName |truncate(9,true, ".") }}</div>
+                </li>
+            {% endfor %}
+            {% else %}
+                <li>
+                    <div class="t-col" style="width: 100%;">Brak meczy</div>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+    <div class="widget-content">
+        <header>
+            <div class="t-col width1">Nastepna kolejka
+                {% if nextRound %}
+                    {{ nextRound.0.date | date('d.m.Y') }}
+                {% endif %}
+            </div>
+        </header>
+        <ul class="clearfix">
+            {% if nextRound %}
+            {% for match in nextRound %}
+                <li>
+                    {% if (match.teamHomeName == 'Draco Kowala') or (match.teamAwayName == 'Draco Kowala') %}
+                        <div class="t-col" style="width: 42%; text-align: left; color:black">{{ match.teamHomeName|truncate(9,true, ".") }}</div>
+                        <div class="t-col" style="width: 16%; text-align: center;color:black ">{{ match.score }}</div>
+                        <div class="t-col" style="width: 42%; text-align: left;color:black">{{ match.teamAwayName|truncate(9,true,".") }}</div>
+                    {% else %}
+                        <div class="t-col" style="width: 45%; text-align: left">{{ match.teamHomeName |truncate(9,true, ".") }}</div>
+                        <div class="t-col" style="width: 10%; text-align: center">{{ match.score }}</div>
+                        <div class="t-col" style="width: 45%; text-align: left">{{ match.teamAwayName |truncate(9,true, ".") }}</div>
+                    {% endif %}
+                </li>
+            {% endfor %}
+            {% else %}
+                <li>
+                    <div class="t-col" style="width: 100%;">Brak zaplanowanych meczy</div>
+                </li>
+            {% endif %}
+
+        </ul>
+    </div>
+</div>
+

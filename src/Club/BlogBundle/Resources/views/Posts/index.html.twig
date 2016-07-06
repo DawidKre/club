@@ -1,0 +1,133 @@
+{% extends 'ClubBlogBundle::layout.html.twig' %}
+
+{% block pageTitle %}
+    {{ siteTitle }} {{ parent() }}
+{% endblock %}
+
+{% block slider %}
+    {% include 'ClubBlogBundle:Template:slider.html.twig' %}
+{% endblock %}
+
+{% block newsBar %}
+    {{ print_news_bar() }}
+{% endblock %}
+
+{% block body %}
+    <div class="kopa-main-col">
+        <div class="widget-area-2">
+            <!-- widget -->
+            <div class="widget kopa-article-list-widget article-list-1">
+                <h3 class="widget-title style12">{{ siteTitle }}<span class="ttg"></span></h3>
+                <ul class="clearfix">
+                    {% if pagination is empty %}
+                        Brak aktualności
+                    {% endif %}
+                    {% for post in pagination %}
+                        <li class="articles123">
+                            <article class="entry-item">
+                                {% if not (post.isMatch) %}
+                                    <div class="entry-thumb" style="max-width: 80px; max-height: 80px;">
+                                        <a href="{{ path('blog_posts_post', {'slug': post.slug}) }}">
+                                            <img src="{{ asset(post.thumbnail) }}" alt="">
+                                        </a>
+                                    </div>
+                                {% endif %}
+                                <div class="entry-content">
+                                    <div class="content-top">
+                                        <h1 class="entry-title" itemscope="" itemtype="http://schema.org/Event">
+                                            <a itemprop="name" href="{{ path('blog_posts_post', {'slug': post.slug}) }}">
+                                                <h3>{{ post.title }}</h3>
+                                            </a>
+                                        </h1>
+                                        <p class="entry-comment">
+                                            <a href="{{ path('blog_posts_post', {'slug': post.slug}) }}#comments">{{ post.comments|length }}</a>
+                                        </p>
+                                        <div class="category" style="text-align: right;">
+                                            {% if post.category is not null %}
+                                                <p class="entry-categories right-align" style="text-align: right;">
+                                                    <span class="fa fa-tag"></span>
+                                                    <a href="{{ path('blog_category_list', {'slug': post.category.slug}) }}">{{ post.category.name }}</a>
+                                                </p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <p>{{ post.content | truncate(300, true, "...") | raw }}</p>
+                                    <footer>
+                                        <p class="entry-author">by 
+                                            <a href="{{ path('blog_author_list',{'username':post.author}) }}">{{ post.author }}</a>
+                                        </p>
+                                    </footer>
+                                    {% if not (post.isMatch) %}
+                                        <footer style="background: none; text-align: right" class="right-align">
+                                            <a href="{{ path('blog_posts_post', {'slug': post.slug}) }}" class="more-detail">Więcej<i class="fa fa-chevron-right"></i></a>
+                                        </footer>
+                                    {% endif %}
+                                    {% if (post.isMatch) and (post.match is not null) %}
+                                        <div class="match-item list-item mb-20" style="background: none; margin-top: 20px;">
+                                            <header style="background: #efefef;">
+                                                <p>Wynik:</p>
+                                                <span>{{ post.match.date |date('d/m/Y') }}</span>
+                                            </header>
+                                            <div class="r-item">
+                                                <div class="r-num" style="background: none;">
+                                                    {% if (post.match.scoreForHome > post.match.scoreForAway) %}
+                                                        <span class="r-color">{{ post.match.scoreForHome }}</span>
+                                                        <span>-</span>
+                                                        <span>{{ post.match.scoreForAway }}</span>
+                                                    {% elseif (post.match.scoreForHome < post.match.scoreForAway) %}
+                                                        <span>{{ post.match.scoreForHome }}</span>
+                                                        <span>-</span>
+                                                        <span class="r-color">{{ post.match.scoreForAway }}</span>
+                                                    {% else %}
+                                                        <span>{{ post.match.scoreForHome }}</span>
+                                                        <span>-</span>
+                                                        <span>{{ post.match.scoreForAway }}</span>
+                                                    {% endif %}
+                                                </div>
+                                                <div class="r-side left" href="fixtures-results.html#">
+                                                    <div class="r-thumb" style="width: 100px; height: 100px">
+                                                        <img src="{{ asset(post.match.teamHome.crest) }}" alt="">
+                                                    </div>
+                                                    <div class="r-content">
+                                                        <h4>{{ post.match.teamHome }}</h4>
+                                                        {% for score in post.match.scores %}
+                                                            {% if (score.player.team == post.match.teamHome) %}
+                                                                <p>{{ score.player.team }}</p>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                                <div class="r-side right" href="">
+                                                    <div class="r-thumb" style="width: 100px; height: 100px">
+                                                        <img src="{{ asset(post.match.teamAway.crest) }}" alt="">
+                                                    </div>
+                                                    <div class="r-content">
+                                                        <h4>{{ post.match.teamAway }}</h4>
+                                                        {% for score in post.match.scores %}
+                                                            {% if (score.player.team == post.match.teamAway) %}
+                                                                <p>{{ score.player }} x {{ score.numGoals }}</p>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <footer style="background: none;">
+                                                <a href="{{ path('blog_posts_post', {'slug': post.slug}) }}" class="more-detail">Więcej<i class="fa fa-chevron-right"></i></a>
+                                            </footer>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </article>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <!-- widget -->
+            <div class="kopa-pagination">
+                {{ knp_pagination_render(pagination) }}
+
+            </div>
+        </div>
+        <!-- widget-area-2 -->
+    </div>
+{% endblock %}

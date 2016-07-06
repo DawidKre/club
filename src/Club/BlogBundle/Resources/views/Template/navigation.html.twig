@@ -1,0 +1,378 @@
+<header class="kopa-header style2">
+<div class="kopa-header-top">
+    <div class="wrapper">
+        <div class="header-top-right">
+            <div class="header-top-list">
+                <ul class="clearfix sf-js-enabled sf-arrows">
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <li>
+                            <a href="{{ path('fos_user_profile_edit') }}">
+                                <span><i class="fa fa-user"></i><span>Profil użytkownika {{ app.user.username }}</span></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('fos_user_security_logout') }}"><span><i class="fa fa-sign-out"></i><span>Wyloguj</span></span></a>
+                        </li>
+                    {% else %}
+                        {% if app.request.get('_route') == 'fos_user_security_login' %}
+                            <li>
+                        {% else %}
+                            <li>
+                        {% endif %}
+                        <a href="{{ path('fos_user_security_login') }}">
+                            <span><i class="fa fa-sign-out"></i><span>Logowanie</span></span>
+                        </a>
+                        </li>
+                        {% if app.request.get('_route') == 'fos_user_registration_register' %}
+                            <li style="">
+                        {% else %}
+                            <li>
+                        {% endif %}
+                        <a href="{{ path('fos_user_registration_register') }}">
+                            <span><i class="fa fa-user"></i><span>Rejestracja</span></span>
+                        </a>
+                        </li>
+                        {% if app.request.get('_route') == 'fos_user_registration_register' %}
+                            <li style="">
+                        {% else %}
+                            <li>
+                        {% endif %}
+                        <a href="{{ path('fos_user_resetting_request') }}">
+                            <span><i class="fa fa-unlock"></i><span>Resetowanie hasła</span></span>
+                        </a>
+                        </li>
+                    {% endif %}
+                    <li>
+                        <div class="kopa-search-box">
+                            <a href=""><i class="fa fa-search"></i><span>Wyszukaj</span></a>
+                            <form action="{{ path('blog_post_search') }}" class="search-form clearfix" method="get">
+                                <input type="text" onblur="if (this.value == '')
+                                this.value = this.defaultValue;" onfocus="if (this.value == this.defaultValue)
+                                this.value = '';" value="Szukaj..." name="search" class="search-text" id="search">
+                                <button type="submit" class="search-submit" id="button-search">
+                                    <span>Go</span>
+                                </button>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- header-top-right -->
+    </div>
+    <!-- wrapper -->
+</div>
+<!-- kopa-header-top -->
+<div class="sticky-wrapper-middle" style="height: 52px;">
+    <div class="kopa-header-middle">
+        <div class="wrapper">
+            <nav class="kopa-main-nav">
+                <ul class="main-menu sf-menu">
+                    {% if app.request.get('_route') == 'blog_posts_index' %}
+                        <li class="current-menu-item">
+                    {% else %}
+                        <li>
+                    {% endif %}
+                    <a href="{{ path('blog_posts_index') }}"><span>Strona główna</span></a>
+                    </li>
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        {% if (app.request.get('_route') == 'fos_user_profile_edit')
+                        or (app.request.get('_route')=='fos_user_change_password')
+                        or (app.request.get('_route')=='fos_user_resetting_request') %}
+                            <li class="current-menu-item">
+                        {% else %}
+                            <li>
+                        {% endif %}
+                        <a href="" style="pointer-events: none; cursor: default;"><span> <i class="fa fa-user"></i></span></a>
+                        <ul class="sub-menu">
+                            {% if app.request.get('_route') == 'fos_user_profile_edit' %}
+                            <li class="current-menu-item">
+                        {% else %}
+                            <li>
+                                {% endif %}
+                                <a href="{{ path('fos_user_profile_edit') }}">Profil</a>
+                            </li>
+                            {% if app.request.get('_route') == 'fos_user_change_password' %}
+                            <li class="current-menu-item">
+                        {% else %}
+                            <li>
+                                {% endif %}
+                                <a href="{{ path('fos_user_change_password') }}">Zmiana hasła</a>
+                            </li>
+                            {% if app.request.get('_route') == 'fos_user_resetting_request' %}
+                            <li class="current-menu-item">
+                                {% else %}
+                            <li>
+                                {% endif %}
+                                <a href="{{ path('fos_user_resetting_request') }}">Resetowanie hasła</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('fos_user_security_logout') }}">Wyloguj się</a>
+                            </li>
+                        </ul>
+                        </li>
+                    {% else %}
+                        {% if (app.request.get('_route') == 'fos_user_security_login') or (app.request.get('_route') =='fos_user_registration_register') %}
+                            <li class="current-menu-item">
+                        {% else %}
+                            <li>
+                        {% endif %}
+                        <a href="" style="pointer-events: none; cursor: default;"><span>Logowanie/Rejestracja</span></a>
+                        <ul class="sub-menu">
+                            {% if app.request.get('_route') == 'fos_user_security_login' %}
+                            <li class="current-menu-item">
+                        {% else %}
+                            <li>
+                                {% endif %}
+                                <a href="{{ path('fos_user_security_login') }}">Logowanie</a>
+                            </li>
+                            {% if app.request.get('_route') == 'fos_user_registration_register' %}
+                            <li class="current-menu-item">
+                                {% else %}
+                            <li>
+                                {% endif %}
+                                <a href="{{ path('fos_user_registration_register') }}">Rejestracja</a>
+                            </li>
+                        </ul>
+                        </li>
+                    {% endif %}
+                    
+                    {% if
+                    (app.request.get('_route') =='game_games_table') or
+                    (app.request.get('_route') =='game_games_games') or
+                    (app.request.get('_route') =='game_games_statistics') or
+                    (app.request.get('_route') =='game_club_cadre') %}
+                        <li class="current-menu-item">
+                    {% else %}
+                        <li>
+                    {% endif %}
+                        <a style="pointer-events: none;cursor: default;" href=""><span>Rozgrywki</span></a>
+                        <ul class="sub-menu">
+                            {% if app.request.get('_route') == 'game_games_table' %}
+                                <li class="current-menu-item">
+                            {% else %}
+                                <li>
+                            {% endif %}
+                                    <a href="{{ path('game_games_table') }}">Tabela</a>
+                                </li>
+                            {% if app.request.get('_route') == 'game_games_games' %}
+                                <li class="current-menu-item">
+                            {% else %}
+                                <li>
+                            {% endif %}
+                                    <a href="{{ path('game_games_games') }}">Terminarz</a>
+                                </li>
+                            {% if app.request.get('_route') == 'game_games_statistics' %}
+                                <li class="current-menu-item">
+                            {% else %}
+                                <li>
+                            {% endif %}
+                                    <a href="{{ path('game_games_statistics') }}">Statystyki</a>
+                                </li>
+                            {% if app.request.get('_route') == 'game_club_cadre' %}
+                                <li class="current-menu-item">
+                            {% else %}
+                                <li>
+                            {% endif %}
+                                    <a href="{{ path('game_club_cadre',{'slug': 'draco-kowala'}) }}">Kadra</a>
+                                </li>
+                        </ul>
+                    </li>
+                    {% if (app.request.get('_route') == 'game_club_info') or (app.request.get('_route') =='game_club_stadion') %}
+                    <li class="current-menu-item">
+                    {% else %}
+                    <li>
+                    {% endif %}
+                        <a href="" style="pointer-events: none; cursor: default;"><span>Klub</span></a>
+                        <ul class="sub-menu">
+                            {% if app.request.get('_route') == 'game_club_info' %}
+                                <li class="current-menu-item">
+                            {% else %}
+                                <li>
+                            {% endif %}
+                                    <a href="{{ path('game_club_info', {'slug': 'draco-kowala'}) }}">Informacje</a>
+                                </li>
+                            {% if app.request.get('_route') == 'game_club_stadion' %}
+                                <li class="current-menu-item">
+                            {% else %}
+                                <li>
+                            {% endif %}
+                                    <a href="{{ path('game_club_stadion') }}">Stadion</a>
+                                </li>
+                        </ul>
+                    </li>
+                    {% if app.request.get('_route') == 'blog_pages_gallery' %}
+                        <li class="current-menu-item">
+                    {% else %}
+                        <li>
+                    {% endif %}
+                            <a href="{{ path('blog_pages_gallery') }}"><span>Galeria</span></a>
+                        </li>
+                    {% if app.request.get('_route') == 'blog_pages_contact' %}
+                        <li class="current-menu-item">
+                    {% else %}
+                        <li>
+                    {% endif %}
+                        <a href="{{ path('blog_pages_contact') }}"><span>Kontakt</span></a>
+                        </li>
+                </ul>
+            </nav>
+            <!--/end main-nav-->
+            <nav class="main-nav-mobile clearfix">
+                <a class="pull fa fa-bars"></a>
+                <ul class="main-menu-mobile" style="display: block;">
+                    {% if app.request.get('_route') == 'blog_posts_index' %}
+                        <li class="current-menu-item">
+                    {% else %}
+                        <li>
+                    {% endif %}
+                        <a href="{{ path('blog_posts_index') }}"><span>Strona główna</span></a>
+                        </li>
+                    {% if
+                    (app.request.get('_route') =='game_games_table') or
+                    (app.request.get('_route') =='game_games_games') or
+                    (app.request.get('_route') =='game_games_results') or
+                    (app.request.get('_route') =='game_games_statistics') or
+                    (app.request.get('_route') =='game_club_cadre') %}
+                        <li class="current-menu-item">
+                    {% else %}
+                        <li>
+                    {% endif %}
+                        <a href=""><span>Rozgrywki</span></a>
+                        <ul class="sub-menu">
+                            {% if app.request.get('_route') == 'game_games_table' %}
+                                <li class="current-menu-item">
+                            {% else %}
+                            <li>
+                            {% endif %}
+                                <a href="{{ path('game_games_table') }}">Tabela</a>
+                                </li>
+                            {% if app.request.get('_route') == 'game_games_games' %}
+                                <li class="current-menu-item">
+                            {% else %}
+                                <li>
+                            {% endif %}
+                                <a href="{{ path('game_games_games') }}">Terminarz</a>
+                                </li>
+                            {% if app.request.get('_route') == 'game_games_statistics' %}
+                                <li class="current-menu-item">
+                            {% else %}
+                                <li>
+                            {% endif %}
+                                <a href="{{ path('game_games_statistics') }}">Statystyki</a>
+                                </li>
+                            {% if app.request.get('_route') == 'game_club_cadre' %}
+                                <li class="current-menu-item">
+                            {% else %}
+                                <li>
+                            {% endif %}
+                                <a href="{{ path('game_club_cadre',{'slug': 'draco-kowala'}) }}">Kadra</a>
+                                </li>
+                        </ul>
+                    </li>
+                    {% if (app.request.get('_route') == 'game_club_info') or (app.request.get('_route') =='game_club_stadion') %}
+                    <li class="current-menu-item">
+                    {% else %}
+                    <li>
+                    {% endif %}
+                        <a href=""><span>Klub</span></a>
+                        <ul class="sub-menu">
+                            {% if app.request.get('_route') == 'game_club_info' %}
+                                <li class="current-menu-item">
+                            {% else %}
+                                <li>
+                            {% endif %}
+                                <a href="{{ path('game_club_info', {'slug': 'draco-kowala'}) }}">Informacje</a>
+                                </li>
+                            {% if app.request.get('_route') == 'game_club_stadion' %}
+                                <li class="current-menu-item">
+                            {% else %}
+                                <li>
+                            {% endif %}
+                                <a href="{{ path('game_club_stadion') }}">Stadion</a>
+                                </li>
+                        </ul>
+                    </li>
+                    {% if app.request.get('_route') == 'blog_pages_gallery' %}
+                    <li class="current-menu-item">
+                    {% else %}
+                    <li>
+                    {% endif %}
+                        <a href="{{ path('blog_pages_gallery') }}"><span>Galeria</span></a>
+                    </li>
+                    {% if app.request.get('_route') == 'blog_pages_contact' %}
+                    <li class="current-menu-item">
+                    {% else %}
+                    <li>
+                    {% endif %}
+                        <a href="{{ path('blog_pages_contact') }}"><span>Kontakt</span></a>
+                    </li>
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        {% if (app.request.get('_route') == 'fos_user_profile_edit')
+                        or (app.request.get('_route')=='fos_user_change_password')
+                        or (app.request.get('_route')=='fos_user_resetting_request') %}
+                        <li class="current-menu-item">
+                        {% else %}
+                        <li>
+                        {% endif %}
+                            <a href=""><span> <i class="fa fa-user"></i></span></a>
+                        <ul class="sub-menu">
+                            {% if app.request.get('_route') == 'fos_user_profile_edit' %}
+                                <li class="current-menu-item">
+                            {% else %}
+                                <li>
+                            {% endif %}
+                                <a href="{{ path('fos_user_profile_edit') }}">Profil</a>
+                                </li>
+                            {% if app.request.get('_route') == 'fos_user_change_password' %}
+                                <li class="current-menu-item">
+                            {% else %}
+                                <li>
+                            {% endif %}
+                                <a href="{{ path('fos_user_change_password') }}">Zmiana hasła</a>
+                                </li>
+                            {% if app.request.get('_route') == 'fos_user_resetting_request' %}
+                                <li class="current-menu-item">
+                            {% else %}
+                                <li>
+                            {% endif %}
+                                <a href="{{ path('fos_user_resetting_request') }}">Resetowanie hasła</a>
+                                </li>
+                                <li>
+                                <a href="{{ path('fos_user_security_logout') }}">Wyloguj się</a>
+                                </li>
+                        </ul>
+                        </li>
+                        {% else %}
+                            {% if (app.request.get('_route') == 'fos_user_security_login') or (app.request.get('_route') =='fos_user_registration_register') %}
+                                <li class="current-menu-item">
+                            {% else %}
+                                <li>
+                            {% endif %}
+                                <a href=""><span>Logowanie/Rejestracja</span></a>
+                                <ul class="sub-menu">
+                            {% if app.request.get('_route') == 'fos_user_security_login' %}
+                                <li class="current-menu-item">
+                            {% else %}
+                                <li>
+                            {% endif %}
+                                    <a href="{{ path('fos_user_security_login') }}">Logowanie</a>
+                                </li>
+                            {% if app.request.get('_route') == 'fos_user_registration_register' %}
+                                <li class="current-menu-item">
+                            {% else %}
+                                <li>
+                            {% endif %}
+                                    <a href="{{ path('fos_user_registration_register') }}">Rejestracja</a>
+                                </li>
+                        </ul>
+                        </li>
+                        {% endif %}
+                </ul>
+            </nav>
+            <!--/main-menu-mobile-->
+        </div>
+        <!-- wrapper -->
+    </div>
+</div>
+</header>

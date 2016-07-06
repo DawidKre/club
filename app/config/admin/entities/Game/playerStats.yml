@@ -1,0 +1,45 @@
+easy_admin:
+    entities:
+        PlayerStats:
+            class: Club\GameBundle\Entity\PlayerStats
+            label: 'Statystyki zawodników'
+            list:
+                actions:
+                    - { name: 'show', label: '', icon: 'eye' }
+                    - { name: '-delete', label: '', icon: 'trash' }
+                    - { name: '-edit'}
+                    - { name: '-new'}
+                title: "Statystyki zawodników"
+                fields: 
+                    - { property: 'player', label: 'Zawodnik' }
+                    - { property: 'matches', label: 'Mecze' }
+                    - { property: 'goals', label: 'Gole' }
+                    - { property: 'assists', label: 'Asysty' }
+                    - { property: 'redCards', label: 'Czerwone' }
+                    - { property: 'yellowCards', label: 'Zółte' }
+                    - { property: 'season', label: 'Sezon' }
+                    - { property: 'player.position', label: 'Pozycja' }
+            show:
+                title: "Statystyki zawodnika"
+                actions:
+                    - { name: '-delete', label: '', icon: 'trash' }
+                    - { name: '-edit'}
+                fields: 
+                    - { property: 'player', label: 'Zawodnik' }
+                    - { property: 'matches', label: 'Mecze' }
+                    - { property: 'goals', label: 'Gole' }
+                    - { property: 'assists', label: 'Asysty' }
+                    - { property: 'redCards', label: 'Czerwone kartki' }
+                    - { property: 'yellowCards', label: 'Zółte kartki' }
+                    - { property: 'season', label: 'Sezon' }
+                    - { property: 'player.position', label: 'Pozycja' }
+            form:
+                fields: 
+                    - { property: 'player', label: 'Nazwa' }
+                    - { property: 'matches', label: 'Mecze' }
+                    - { property: 'goals', label: 'Gole' }
+                    - { property: 'assists', label: 'Asysty' }
+                    - { property: 'redCards', label: 'Czerwone' }
+                    - { property: 'yellowCards', label: 'Zółte' }
+                    - { property: 'season', label: 'Sezon' }
+ 

@@ -1,0 +1,64 @@
+Club\GameBundle\Entity\Team:
+    relations:
+        -
+            rel: self
+            href: 
+                route: api_game_team_show
+                parameters: 
+                    slug: expr(object.getSlug())
+                absolute: false  
+        -
+            rel: players
+            href: 
+                route: api_game_team_players_list
+                parameters: 
+                    slug: expr(object.getSlug())
+                absolute: false  
+    
+    exclusion_policy: ALL
+    accessor_order: custom
+    custom_accessor_order: [id, name]
+    properties : 
+        id:
+            expose: true
+            groups: [Default, Details]
+        name:
+            expose: true
+            groups: [Default, Details]
+        adress:
+            expose: true
+            groups: [Details]
+        about:
+            expose: true
+            groups: [Details]           
+        colors:
+            expose: true
+            groups: [Details]
+        phone:
+            expose: true
+            groups: [Details]
+        email:
+            expose: true
+            groups: [Details]            
+        crest:
+            expose: true
+            groups: [Details]            
+        creationDate:
+            expose: true
+            groups: [Details]
+
+#    virtual_properties:
+#        getPositionName:
+#            serialized_name: position
+#            type: string
+#        getPositionId:
+#            serialized_name: positionId
+#            type: integer
+#        getTeamName:
+#            serialized_name: team
+#            type: string
+#        getTeamId:
+#            serialized_name: teamId
+#            type: integer
+
+                   

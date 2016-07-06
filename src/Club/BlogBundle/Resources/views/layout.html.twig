@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% block head %}
+    <head>
+        <meta charset="utf-8">
+        <title>{% spaceless %}{% block pageTitle %}{% endblock %}{% endspaceless %} | Draco Kowala</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="{% spaceless %}{% block pageDescription %}{% endblock %}{% endspaceless %}">
+        <meta name="author" content="">
+        
+        {% block stylesheets %}
+            <link rel="stylesheet" type="text/css" href="{{ asset('public/css/packages.css') }}" media="all"/>
+            <link rel="stylesheet" type="text/css" href="{{ asset('public/main.css') }}" media="all"/>
+            <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+            <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+        {% endblock %}
+
+        <script src="{{ asset('public/js/modernizr.custom.js') }}"></script>
+
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" href="../public/css/ie.css" type="text/css" media="all"/>
+        <![endif]-->
+
+        <!--[if IE 9]>
+        <link rel="stylesheet" href="../public/css/ie9.css" type="text/css" media="all"/>
+        <![endif]-->
+
+        <!-- Le fav and touch icons -->
+        <link rel="shortcut icon" href="{{ asset('public/images/draco.png') }}">
+    </head>
+{% endblock %}
+
+<body class="kopa-home-page">
+
+{% include '@ClubBlog/Template/navigation.html.twig' %}
+
+<div id="main-content" id="main"> 
+
+{% block slider %}
+{% endblock %}
+    <div class="wrapper">
+
+{% block newsBar %}
+    {{ print_news_bar() }}
+{% endblock %}
+    <div class="row">
+            
+{% block body %}
+    </div>
+{% endblock %}
+        <!-- main-col -->
+        {% if sidebar is not defined %}
+            <div class="sidebar widget-area-11">
+                <div class="widget widget_search style1">
+                    <h3 class="widget-title style3"><span class="fa fa-search"></span>Szukaj</h3>
+                    <div class="search-box">
+                        <form action="{{ path('blog_post_search') }}" class="search-form clearfix" method="get">
+                            <input type="text" onblur="if (this.value == '') this.value = this.defaultValue;"
+                                   onfocus="if (this.value == this.defaultValue) this.value = '';" value="Szukaj..."
+                                   name="search" class="search-text" id="search"
+                            >
+                            <button type="submit" class="search-submit" id="button-search">
+                                <span class="fa fa-search"></span>
+                            </button>
+                        </form>
+                        <!-- search-form -->
+                    </div>
+                </div>
+                <!-- widget -->
+                {{ print_table() }}
+                {{ print_last_next_round() }}
+                {{ print_latest_news_comments() }}
+                <!-- widget -->
+                <div class="widget kopa-facebook-widget kopa-tab-1-widget">
+                    <h3 class="widget-title style16"><span>facebook</span></h3>
+                    <iframe style="height: 500px; border:none; overflow:hidden;"
+                            src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ffcdracokowala%2F&tabs=timeline&width=340&height=700&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=false&appId"
+                            width="340" height="700" scrolling="no"
+                            frameborder="0"
+                            allowTransparency="true">
+                    </iframe>
+                </div>
+                <!-- widget facebook -->
+            </div>
+            <!-- sidebar -->
+        {% endif %}
+    </div>
+    <!-- row -->
+</div>
+<!-- wrapper -->
+</div>
+<div id="bottom-sidebar">
+    <div class="bottom-area-1">
+        <div class="wrapper">
+            <div class="kopa-logo">
+                <a href="{{ path('blog_posts_index') }}"><img class="img-thumbnail" src="{{ asset('bundles/clubblog/images/draco.png') }}" alt="logo"></a>
+            </div>
+            <!-- logo -->
+            <nav class="bottom-nav">
+                <ul class="bottom-menu" style="line-height: 99px;">
+                    <li><a href="{{ path('blog_posts_index') }}">Strona główna</a></li>
+                    <li><a href="{{ path('blog_pages_contact') }}">Kontakt</a></li>
+                    {% if app.user %}
+                        <li><a href="{{ path('fos_user_profile_edit') }}">Profil użytkownika</a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li><a href="{{ path('easyadmin') }}">Admin</a></li>    
+                        {% endif %}
+                    {% else %}
+                        <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+                        <li><a href="{{ path('fos_user_registration_register') }}">Rejestracja</a></li>
+                    {% endif %}
+                    <li><a href="{{ path('game_club_info', {'slug': 'draco-kowala'}) }}">Informacje</a></li>
+                    <li><a href="{{ path('blog_pages_gallery') }}">Galeria</a></li>
+                    <li><a href="{{ path('game_games_table') }}">Tabela</a></li>
+                    <li><a href="{{ path('game_games_games') }}">Terminarz</a></li>
+                </ul>
+            </nav>
+            <!--/end bottom-nav-->
+            <nav class="bottom-nav-mobile clearfix">
+                <a class="pull fa fa-bars" style="margin-top: 34px; margin-bottom: 34px;"></a>
+                <ul class="main-menu-mobile bottom-menu-mobile" style="top: 39px;">
+                    <li><a href="{{ path('blog_posts_index') }}">Strona główna</a></li>
+                    <li><a href="{{ path('blog_pages_contact') }}">Kontakt</a></li>
+                    {% if app.user %}
+                        <li><a href="{{ path('fos_user_profile_edit') }}">Profil użytkownika</a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li><a href="{{ path('easyadmin') }}">Admin</a></li>
+                        {% endif %}
+                    {% else %}
+                        <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+                        <li><a href="{{ path('fos_user_registration_register') }}">Rejestracja</a></li>
+                    {% endif %}
+                    <li><a href="{{ path('game_club_info', {'slug': 'draco-kowala'}) }}">Informacje</a></li>
+                    <li><a href="{{ path('blog_pages_gallery') }}">Galeria</a></li>
+                    <li><a href="{{ path('game_games_table') }}">Tabela</a></li>
+                    <li><a href="{{ path('game_games_games') }}">Terminarz</a></li>
+                </ul>
+            </nav>
+            <!--/main-menu-mobile-->
+        </div>
+        <!-- wrapper -->
+    </div>
+    <!-- bottom-area-2 -->
+</div>
+<!-- bottom-sidebar -->
+<footer id="kopa-footer">
+    <div class="wrapper clearfix">
+        <p id="copyright" class="">Copyright © 2016 . All Rights Reserved.
+            <a href="{{ path('blog_posts_index') }}">
+            </a>
+        </p>
+    </div>
+    <!-- wrapper -->
+</footer>
+<!-- kopa-footer -->
+
+<a href="#id" class="scrollup"><span class="fa fa-chevron-up"></span></a>
+
+{% block javascripts %}
+    <script src="{{ asset('public/js/site.js') }}"></script>
+{% endblock %}
+
+</body>
+</html>
+

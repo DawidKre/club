@@ -1,0 +1,12 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+{% set pageTitle = 'Resetuj hasło' %}
+{% block pageTitle %}
+    {{ pageTitle }} {{ parent() }}
+{% endblock %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    <p>
+        {{ 'resetting.check_email'|trans({'%email%': email}) }}
+    </p>
+{% endblock %}

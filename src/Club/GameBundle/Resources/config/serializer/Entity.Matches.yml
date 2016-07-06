@@ -1,0 +1,115 @@
+Club\GameBundle\Entity\Matches:
+    relations:
+        -
+            rel: self
+            href: 
+                route: api_game_match_show
+                parameters: 
+                    id: expr(object.getId())
+                absolute: false
+        -
+            rel: team_home
+            href: 
+                route: api_game_team_show
+                parameters: 
+                    slug: expr(object.getTeamHome().getSlug())
+                absolute: false               
+        -
+            rel: team_away
+            href: 
+                route: api_game_team_show
+                parameters: 
+                    slug: expr(object.getTeamAway().getSlug())
+                absolute: false        
+        -
+            rel: season
+            href: 
+                route: api_game_season_show
+                parameters: 
+                    id: expr(object.getSeason().getId())
+                absolute: false   
+        -
+            rel: round
+            href: 
+                route: api_game_round_show
+                parameters: 
+                    id: expr(object.getRound().getId())
+                absolute: false   
+
+        -
+            rel: assists
+            embedded:
+                content: expr(object.getAssists())
+                max_depth: 1
+            exclusion:
+                max_depth: 1
+        -
+            rel: squad
+            embedded:
+                content: expr(object.getSquad())
+                max_depth: 1
+            exclusion:
+                max_depth: 1                
+    exclusion_policy: ALL
+    accessor_order: custom
+    custom_accessor_order: [id]
+    properties: 
+        id:
+            expose: true
+        name:
+            expose: true   
+        score:
+            expose: true
+            type: string
+#        teamHome:
+#            expose: false
+#        teamHome:
+#            expose: false
+        scoreForHome:
+            expose: true
+            type: integer
+            serialized_name: score_for_home       
+        scoreForAway:
+            expose: fas
+            type: integer
+            serialized_name: score_for_away
+
+        date:
+            expose: true
+            type: DateTime<'Y-m-d'>
+#        redCards:
+#            expose: true
+#            max_depth: 1
+#        yellowCards:
+#            expose: true
+#            max_depth: 1
+#        squad:
+#            expose: true
+#            max_depth: 1
+#        assists: 
+#            expose: true
+#            max_depth: 1
+            
+    virtual_properties:
+        getTeamHomeName:
+            serialized_name: team_home
+            type: string
+        getTeamHomeId:
+            serialized_name: team_home_id
+            type: integer
+        getTeamAwayName:
+            serialized_name: team_away
+            type: string
+        getTeamAwayId:
+            serialized_name: team_away_id
+            type: integer
+        getSeasonName:
+            serialized_name: season
+            type: string
+        getSeasonId:
+            serialized_name: season_id
+            type: integer
+        getRoundName:
+            type: string
+        getRoundId:
+            type: integer     

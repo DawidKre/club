@@ -1,0 +1,178 @@
+#fos_rest:
+#    disable_csrf_role:    null
+#    access_denied_listener:
+#        enabled:              false
+#        service:              null
+#        formats:
+#
+#            # Prototype
+#            name:                 ~
+#    unauthorized_challenge:  null
+#    param_fetcher_listener:
+#        enabled:              false
+#        force:                false
+#        service:              null
+#    cache_dir:            '%kernel.cache_dir%/fos_rest'
+#    allowed_methods_listener:
+#        enabled:              false
+#        service:              null
+#    routing_loader:
+#        default_format:       null
+#        include_format:       true
+#    body_converter:
+#        enabled:              false
+#        validate:             false
+#        validation_errors_argument:  validationErrors
+#    service:
+#        router:               router
+#        templating:           templating
+#        serializer:           null
+#        view_handler:         fos_rest.view_handler.default
+#        inflector:            fos_rest.inflector.doctrine
+#        validator:            validator
+#    serializer:
+#        version:              null
+#        groups:               []
+#        serialize_null:       false
+#    view:
+#        default_engine:       twig
+#        force_redirects:
+#
+#            # Prototype
+#            name:                 ~
+#        mime_types:
+#            enabled:              false
+#            service:              null
+#            formats:
+#
+#                # Prototype
+#                name:                 ~
+#        formats:
+#
+#            # Prototype
+#            name:                 ~
+#        templating_formats:
+#
+#            # Prototype
+#            name:                 ~
+#        view_response_listener:
+#            enabled:              false
+#            force:                false
+#            service:              null
+#        failed_validation:    400
+#        empty_content:        204
+#        exception_wrapper_handler:  null
+#        serialize_null:       false
+#        jsonp_handler:
+#            callback_param:       callback
+#            mime_type:            application/javascript+jsonp
+#    exception:
+#        enabled:              false
+#        exception_controller:  null
+#        codes:
+#
+#            # Prototype
+#            name:                 ~
+#        messages:
+#
+#            # Prototype
+#            name:                 ~
+#    body_listener:
+#        enabled:              true
+#        service:              null
+#        default_format:       null
+#        throw_exception_on_unsupported_content_type:  false
+#        decoders:
+#
+#            # Prototype
+#            name:                 ~
+#        array_normalizer:
+#            service:              null
+#            forms:                false
+#    format_listener:
+#        enabled:              false
+#        service:              null
+#        rules:
+#
+#            # URL path info
+#            path:                 null
+#
+#            # URL host name
+#            host:                 null
+#
+#            # Method for URL
+#            methods:              null
+#            stop:                 false
+#            prefer_extension:     true
+#            fallback_format:      html
+#            attributes:           []
+#            priorities:           []
+#        media_type:
+#            enabled:              false
+#            service:              null
+#            version_regex:        '/(v|version)=(?P<version>[0-9\.]+)/'
+#    versioning:
+#        enabled: false
+#        default_version: ~
+#        resolvers:
+#            query:
+#                enabled: true
+#                parameter_name: version
+#            custom_header:
+#                enabled: true
+#                header_name: X-Accept-Version
+#            media_type:
+#                enabled: true
+#                regex: /(v|version)=(?P<version>[0-9\.]+)/
+#        guessing_order:
+#            - query
+#            - custom_header
+#            - media_type
+
+fos_rest:
+    param_fetcher_listener: true
+    body_listener: true
+    format_listener:
+        rules:
+            - { path: ^/api, priorities: [ json ], fallback_format: json, prefer_extension: false }
+            - { path: '^/', priorities: [ 'html', '*/*'], fallback_format: html, prefer_extension: true }
+    body_converter:
+        enabled: true
+        validate: true
+
+    view:
+        view_response_listener: 'force'
+        formats:
+            xml:  true
+            json: true
+        templating_formats:
+            html: true
+    serializer:
+        serialize_null: true
+    exception:
+        codes:
+            'Symfony\Component\Routing\Exception\ResourceNotFoundException': 404
+            'Doctrine\ORM\OptimisticLockException': HTTP_CONFLICT
+        messages:
+            'Symfony\Component\Routing\Exception\ResourceNotFoundException': true
+    allowed_methods_listener: true
+    access_denied_listener:
+        json: true
+
+    disable_csrf_role: ROLE_API
+
+#jms_serializer:
+#    metadata:
+#        directories:
+#            GameBundle:
+#                namespace_prefix: "Club\\GameBundle\\Entity"
+#                path: "%kernel.root_dir%/serializer/GameBundle"
+                
+jms_serializer:
+    metadata:
+        debug: true
+        auto_detection: true
+        directories:
+            ClubGameBundle:
+                namespace_prefix: "Club\\GameBundle"
+                path: "@ClubGameBundle/Resources/config/serializer"

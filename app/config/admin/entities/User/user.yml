@@ -1,0 +1,25 @@
+easy_admin:
+    entities:
+        User:
+            class: Club\UserBundle\Entity\User
+            label: 'Użytkownicy'
+            list:
+                title: "Lista Użytkowników"    
+                fields:
+                    - { property: 'username', label: 'Nazwa' }
+                    - { property: 'email', label: 'Email', type: 'email' }
+                    - { property: 'enabled', label: 'Aktywny' }
+                    - { property: 'lastLogin', label: 'Ostatnie Logowanie'}
+                    - { property: 'locked', label: 'Zablokowany' }
+                    - { property: 'roles', label: 'Uprawnienia' }
+                    - { property: 'registerDate', label: 'Data rejestracji',format: 'j/n/Y'}
+                    - { property: 'avatar', label: 'Avatar', type: 'image'}
+            form:
+                fields:
+                    - { property: 'username', label: 'Nazwa użytkownika' }
+                    - { property: 'email', type: 'email' }
+                    - { property: 'plainPassword', label: 'Hasło', type: 'password',  help: 'Hasło musi mieć conajmniej 8 znaków' }
+                    - { property: 'enabled', label: 'Aktywny' , type: 'checkbox'}
+                    - { property: 'locked', label: 'Aktywny' , type: 'checkbox'}
+                    - { property: 'roles', label: 'Role'}
+

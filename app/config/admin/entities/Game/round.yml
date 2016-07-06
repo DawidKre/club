@@ -1,0 +1,31 @@
+easy_admin:
+    entities:
+        Round:
+            class: Club\GameBundle\Entity\Round
+            label: 'Kolejki'
+            list:
+                actions: 
+                    - { name: '-new', label: 'Dodaj drużyne',icon: 'plus'}
+                    - { name: 'show', label: '', icon: 'eye' }
+                    - { name: '-edit', label: '', icon: 'edit' }
+                    - { name: '-delete', label: '', icon: 'trash' }
+                title: "Lista Kolejek"
+                fields: 
+                    - { property: 'id', label: 'Id' }
+                    - { property: 'name', label: 'Kolejka' }
+
+                    #- { property: 'matches', label: 'Liczba meczy' }   
+            form:
+                title: "Edytuj kolejke"
+                fields: 
+                    - { property: 'name', label: 'Kolejka' }
+
+                    #- { property: 'matches', label: 'Liczba meczy' }
+            show:
+                actions: 
+                    - { name: '-edit', label: '', icon: 'edit' }
+                    - { name: '-delete', label: '', icon: 'trash' }
+                title: 'Szczegóły kolejki'
+                fields:
+                    - { property: 'name', label: 'Kolejka' }
+                    - { property: 'matches', label: 'Lista meczy' }
