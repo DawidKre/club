@@ -62,11 +62,6 @@ class Comment
      */
     private $author;
 
-//    /**
-//     * @var int
-//     * @ORM\Column(type="integer")
-//     */
-//    private $depth = 0;
     /**
      * @ORM\Column(type="datetime")
      * @Serializer\Expose()
@@ -90,12 +85,6 @@ class Comment
      * )
      */
     private $isDeleted = false;
-
-//    /**
-//     * @ORM\Column(type="text", length=120, nullable=true)
-//     *
-//     */
-//    private $ancestor;
 
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
@@ -128,7 +117,7 @@ class Comment
      *
      * @param \DateTime $deletedAt
      *
-     * @return Post
+     * @return Comment
      */
     public function setDeletedAt($deletedAt)
     {

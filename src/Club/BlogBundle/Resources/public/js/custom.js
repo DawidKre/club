@@ -26,7 +26,7 @@
 
 
 $(document).ready(function () {
-
+    alert('dasd');
     var kopa_variable = {
         "contact": {
             "address": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
@@ -76,9 +76,10 @@ $(document).ready(function () {
 
     Modernizr.load([
         {
-            load: kopa_variable.url.template_directory_uri + 'js/superfish.js',
+            load: 'superfish.js',
             complete: function () {
-
+                alert(1);
+                console.log(kopa_variable.url.template_directory_uri);
                 //Main menu
                 $('.top-menu').superfish({});
 
@@ -93,7 +94,7 @@ $(document).ready(function () {
 
     Modernizr.load([
         {
-            load: kopa_variable.url.template_directory_uri + 'js/superfish.js',
+            load: 'superfish.js',
             complete: function () {
 
                 var r_ul = $('.kopa-main-nav .sf-menu');
@@ -184,7 +185,7 @@ $(document).ready(function () {
      ============================================================ */
 
     Modernizr.load([{
-        load: [kopa_variable.url.template_directory_uri + 'js/owl.carousel.js'],
+        load: ['owl.carousel.js'],
         complete: function () {
 
             var owl1 = $(".owl-carousel-1");

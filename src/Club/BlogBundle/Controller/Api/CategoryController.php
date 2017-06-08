@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: dawid
- * Date: 20.05.16
- * Time: 11:39
- */
 
 namespace Club\BlogBundle\Controller\Api;
 
@@ -20,10 +14,9 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-
-///**
-// * @Security("is_granted('ROLE_USER')")
-// */
+/**
+ * @Security("is_granted('ROLE_USER')")
+ */
 class CategoryController extends BaseController
 {
     /**
@@ -45,23 +38,23 @@ class CategoryController extends BaseController
     public function newAction(Request $request)
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
-        
+
         $category = new Category();
         $form = $this->createForm(CategoryType::class, $category);
         $this->processForm($request, $form);
-        
-        if(!$form->isValid()){
+
+        if (!$form->isValid()) {
             $this->throwApiProblemValidationException($form);
         }
-        
+
         $em = $this->getDoctrine()->getManager();
         $em->persist($category);
         $em->flush();
 
         $location = $this->generateUrl('api_blog_categories_show', [
-            'slug'  =>  $category->getSlug()
+            'slug' => $category->getSlug()
         ]);
-         
+
         $response = $this->createApiResponse($category, 201);
         $response->headers->set('Location', $location);
 
@@ -78,7 +71,7 @@ class CategoryController extends BaseController
      *          404="Returned when not found"
      *     }
      * )
-     * 
+     *
      * @Route("/api/categories/{slug}",
      *     name="api_blog_categories_show"
      * )
@@ -90,12 +83,12 @@ class CategoryController extends BaseController
     {
         $category = $this->getCategoryRepository()
             ->findOneBySlug($slug);
-        
-        if(!$category) {
+
+        if (!$category) {
             throw $this->createNotFoundException('No category found');
         }
         $response = $this->createApiResponse($category);
-        
+
         return $response;
     }
 
@@ -149,7 +142,7 @@ class CategoryController extends BaseController
      * @Method({"PUT", "PATCH"})
      * @param $slug
      * @param Request $request
-     * @return JsonResponse* 
+     * @return JsonResponse*
      * @internal param $name
      */
     public function updateAction($slug, Request $request)
@@ -158,7 +151,7 @@ class CategoryController extends BaseController
         $category = $this->getCategoryRepository()
             ->findOneBySlug($slug);
 
-        if(!$category) {
+        if (!$category) {
             throw $this->createNotFoundException(sprintf(
                 'No category found with slug "%s"',
                 $slug
@@ -170,10 +163,10 @@ class CategoryController extends BaseController
         ]);
         $this->processForm($request, $form);
 
-        if(!$form->isValid()){
+        if (!$form->isValid()) {
             $this->throwApiProblemValidationException($form);
         }
-        
+
         $em = $this->getDoctrine()->getManager();
         $em->persist($category);
         $em->flush();
@@ -206,15 +199,15 @@ class CategoryController extends BaseController
         $category = $this->getCategoryRepository()
             ->findOneBySlug($slug);
 
-        if($category) {
+        if ($category) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($category);
             $em->flush();
         }
-        
-        return new Response(null, 204);
-        
-        
+
+        return new jsonResponse(null, 204);
+
+
     }
 
     /**

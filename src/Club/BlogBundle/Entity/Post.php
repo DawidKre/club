@@ -2,6 +2,7 @@
 
 namespace Club\BlogBundle\Entity;
 
+use Club\GameBundle\Entity\Matches;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation\Slug;
@@ -143,11 +144,9 @@ class Post
      * @ORM\JoinColumn(
      *     name="author_id",
      *     referencedColumnName="id",
-     *
-     *
+     *     onDelete="SET NULL"
      * )
      *
-     * 
      */
     private $author;
 
@@ -617,7 +616,7 @@ class Post
      */
     public function setNumComments($numComments)
     {
-        $this->numComments = intval($numComments);
+        return $this->numComments = intval($numComments);
         
     }
 
@@ -665,11 +664,11 @@ class Post
     /**
      * Set match
      *
-     * @param \Club\GameBundle\Entity\Matches $match
+     * @param Matches $match
      *
      * @return Post
      */
-    public function setMatch(\Club\GameBundle\Entity\Matches $match = null)
+    public function setMatch(Matches $match = null)
     {
         $this->match = $match;
 
@@ -679,7 +678,7 @@ class Post
     /**
      * Get match
      *
-     * @return \Club\GameBundle\Entity\Matches
+     * @return Matches
      */
     public function getMatch()
     {

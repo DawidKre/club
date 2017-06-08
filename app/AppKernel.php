@@ -31,6 +31,7 @@ class AppKernel extends Kernel
             new Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle(),
             new Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new Bmatzner\ModernizrBundle\BmatznerModernizrBundle(),
             
         ];
 

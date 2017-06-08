@@ -13,6 +13,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class PostRepository extends EntityRepository
 {
+    
     public function getQueryBuilder(array $params = array())
     {
         $qb = $this->createQueryBuilder('p')
@@ -87,6 +88,10 @@ class PostRepository extends EntityRepository
         return $qb->getQuery()->getOneOrNullResult();
     }
 
+    /**
+     * @param $limit
+     * @return mixed
+     */
     public function getLatestNews($limit)
     {
         $qb = $this->createQueryBuilder('p')

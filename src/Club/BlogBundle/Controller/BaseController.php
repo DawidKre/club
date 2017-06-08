@@ -32,6 +32,7 @@ class BaseController extends Controller
             $commentId
         ));
     }
+    
     protected function createAuthorNotFoundHttpException($author)
     {
         return new NotFoundHttpException(sprintf(
@@ -39,6 +40,7 @@ class BaseController extends Controller
             $author
         ));
     }
+
     protected function createSearchNotFoundException($slug)
     {
         return new NotFoundHttpException(sprintf(
@@ -46,7 +48,14 @@ class BaseController extends Controller
             $slug
         ));
     }
-    
+
+    /**
+     * @param array $params
+     * @param $page
+     * @param $slug
+     * @param $repo
+     * @return array
+     */
     protected function getPaginationList(array $params = array(), $page, $slug, $repo)
     {
         $repository = $this->getDoctrine()->getManager()->getRepository($repo);
@@ -63,6 +72,11 @@ class BaseController extends Controller
         );
     }
 
+    /**
+     * @param array $params
+     * @param $page
+     * @return mixed
+     */
     protected function getPaginationPost(array $params = array('status' => 'published'), $page)
     {
         $PostRepo = $this->getPostRepository();
@@ -74,37 +88,32 @@ class BaseController extends Controller
 
         return $pagination;
     }
-    
-    public function getCategoryRepository()
-    {
-        return $this->getDoctrine()->getManager()->getRepository(Category::class);
-    }
 
-    public function getPostRepository()
-    {
-        return $this->getDoctrine()->getManager()->getRepository(Post::class);
-    }
 
-    public function getCommentRepository()
-    {
-        return $this->getDoctrine()->getManager()->getRepository(Comment::class);
-    }
-
+    /**
+     * @param $data
+     * @return mixed
+     */
     public function serialize($data)
     {
         $context = new SerializationContext();
-        
+
         $context->setSerializeNull(true);
         $context->enableMaxDepthChecks();
-        
+
         return $this->get('jms_serializer')
             ->serialize($data, 'json', $context);
     }
 
+    /**
+     * @param $data
+     * @param int $statusCode
+     * @return Response
+     */
     public function createApiResponse($data, $statusCode = 200)
     {
         $json = $this->serialize($data);
-        return new Response($json, $statusCode,[
+        return new Response($json, $statusCode, [
             'Content-Type' => 'application/hal+json'
         ]);
     }
@@ -124,6 +133,10 @@ class BaseController extends Controller
 
     }
 
+    /**
+     * @param FormInterface $form
+     * @return array
+     */
     public function getErrorsFromForm(FormInterface $form)
     {
         $errors = array();
@@ -141,6 +154,10 @@ class BaseController extends Controller
         return $errors;
     }
 
+    /**
+     * @param Request $request
+     * @param FormInterface $form
+     */
     public function processForm(Request $request, FormInterface $form)
     {
         $body = $request->getContent();
@@ -157,6 +174,30 @@ class BaseController extends Controller
 
         $clearMissing = $request->getMethod() != 'PATCH';
         $form->submit($data, $clearMissing);
+    }
+
+    /**
+     * @return \Doctrine\Common\Persistence\ObjectRepository
+     */
+    public function getCategoryRepository()
+    {
+        return $this->getDoctrine()->getManager()->getRepository(Category::class);
+    }
+
+    /**
+     * @return \Doctrine\Common\Persistence\ObjectRepository
+     */
+    public function getPostRepository()
+    {
+        return $this->getDoctrine()->getManager()->getRepository(Post::class);
+    }
+
+    /**
+     * @return \Doctrine\Common\Persistence\ObjectRepository
+     */
+    public function getCommentRepository()
+    {
+        return $this->getDoctrine()->getManager()->getRepository(Comment::class);
     }
 
 }

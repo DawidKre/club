@@ -30,8 +30,7 @@ class ApiProblem
         $this->statusCode = $statusCode;
 
         if ($type === null) {
-            // no type? The default is about:blank and the title should
-            // be the standard status code message
+
             $type = 'about:blank';
             $title = isset(Response::$statusTexts[$statusCode])
                 ? Response::$statusTexts[$statusCode]

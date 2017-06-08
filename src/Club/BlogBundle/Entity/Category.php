@@ -3,6 +3,7 @@
 namespace Club\BlogBundle\Entity;
 
 use Club\BlogBundle\Annotation\Links;
+use Club\BlogBundle\Entity\Post;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -88,7 +89,7 @@ class Category
      *
      * @param \DateTime $deletedAt
      *
-     * @return Post
+     * @return Category
      */
     public function setDeletedAt($deletedAt)
     {
@@ -178,11 +179,11 @@ class Category
     /**
      * Add post
      *
-     * @param \Club\BlogBundle\Entity\Post $post
+     * @param Post $post
      *
      * @return Category
      */
-    public function addPost(\Club\BlogBundle\Entity\Post $post)
+    public function addPost(Post $post)
     {
         $this->posts[] = $post;
 
@@ -192,9 +193,9 @@ class Category
     /**
      * Remove post
      *
-     * @param \Club\BlogBundle\Entity\Post $post
+     * @param Post $post
      */
-    public function removePost(\Club\BlogBundle\Entity\Post $post)
+    public function removePost(Post $post)
     {
         $this->posts->removeElement($post);
     }
