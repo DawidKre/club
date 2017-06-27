@@ -1,0 +1,2 @@
+#services:
+#    lexik_jwt_authentication: '@Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface'

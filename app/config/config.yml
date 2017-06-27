@@ -1,4 +1,5 @@
 imports:
+    - { resource: legacy_aliases.yml }
     - { resource: rest.yml }
     - { resource: parameters.yml }
     - { resource: admin/ }
@@ -32,7 +33,6 @@ framework:
         engines: ['twig']
     default_locale:  "%locale%"
     trusted_hosts:   ~
-    trusted_proxies: ~
     session:
         # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
         handler_id:  session.handler.native_file
@@ -146,9 +146,9 @@ fos_user:
 nelmio_api_doc: ~
 
 lexik_jwt_authentication:
-    private_key_path: %kernel.root_dir%/../var/jwt/private.pem
-    public_key_path:  %kernel.root_dir%/../var/jwt/public.pem
-    pass_phrase:      %jwt_key_pass_phrase%
+    private_key_path: "%kernel.root_dir%/../var/jwt/private.pem"
+    public_key_path:  "%kernel.root_dir%/../var/jwt/public.pem"
+    pass_phrase:      "%jwt_key_pass_phrase%"
     token_ttl:        3600
     
 bazinga_hateoas:

@@ -4,17 +4,22 @@ parameters:
 #    parameter_name: value
 
 services:
+#    _defaults:
+#        autowire: true
+#        autoconfigure: true 
+    
+
     app.form.registration:
-            class: Club\UserBundle\Form\RegistrationType
-            tags:
-                - { name: form.type, alias: app_user_registration }
+        class: Club\UserBundle\Form\RegistrationType
+        tags:
+            - { name: form.type, alias: app_user_registration }
     app.form.profile:
-                class: Club\UserBundle\Form\ProfileType
-                tags:
-                    - { name: form.type, alias: app_user_profile }
+        class: Club\UserBundle\Form\ProfileType
+        tags:
+            - { name: form.type, alias: app_user_profile }
 
     twig.extension.text:
-         class: Twig_Extensions_Extension_Text
-         tags:
-             - { name: twig.extension }
-      
+        class: Twig_Extensions_Extension_Text
+        tags:
+            - { name: twig.extension }
+  

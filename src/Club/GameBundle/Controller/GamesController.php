@@ -70,6 +70,7 @@ class GamesController extends BaseController
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/statystyki", name="game_games_statistics")
+     * 
      */
     public function statisticsAction(Request $request)
     {

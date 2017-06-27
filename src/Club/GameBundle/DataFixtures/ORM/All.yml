@@ -2,63 +2,63 @@ Club\GameBundle\Entity\Team:
     team1:
         name: Draco Kowala
         adress: Kowala Pierwsza, 24-320 Poniatowa
-        about: <text($maxNbChars = 2000)>
+        about: <text($maxNbChars = 200)>
         colors: Niebieski, biały, żółty
         email: <email()>
         creationDate: <dateTimeBetween('-30 years', '-29 years')>
-        facebookLink: https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ffcdracokowala%2F&tabs&width=330&height=130&small_header=false&adapt_container_width=false&hide_cover=false&show_facepile=false&appId
+        facebookLink: 
     team2:
         name: Viking Leśniczówka
         adress: Leśniczówka
-        about: <text($maxNbChars = 2000)>
+        about: <text($maxNbChars = 200)>
         colors: Czarny, zielony
         email: <email()>
     team3:
         name: Wisła Jóżefów
         adress: Jóżefów
-        about: <text($maxNbChars = 2000)>
+        about: <text($maxNbChars = 200)>
         colors: Czarny, zielony
         email: <email()>
     team4:
         name: Błękitni Kierz
         adress: Kierz
-        about: <text($maxNbChars = 2000)>
+        about: <text($maxNbChars = 200)>
         colors: Czarny, zielony
         email: <email()>
     team5:
         name: Czarni Puszno Godowskie
         adress: Puszno Godowskie
-        about: <text($maxNbChars = 2000)>
+        about: <text($maxNbChars = 200)>
         colors: Czarny, zielony
         email: <email()>
     team6:
         name: LKS Elżbieta
         adress: Elżbieta
-        about: <text($maxNbChars = 2000)>
+        about: <text($maxNbChars = 200)>
         colors: Czarny, zielony
         email: <email()>
     team7:
         name: Pogoń Trzebiesza
         adress: Trzebiesza
-        about: <text($maxNbChars = 2000)>
+        about: <text($maxNbChars = 200)>
         colors: Czarny, zielony
         email: <email()>
     team8:
         name: Poraj Kraczewice
         adress: Kraczewice
-        about: <text($maxNbChars = 2000)>
+        about: <text($maxNbChars = 200)>
         colors: Czarny, zielony
         email: <email()>
     team9:
         name: Dąbrowiak Dąbrowa Wronowska
         adress: Dąbrowa Wronowska
-        about: <text($maxNbChars = 2000)>
+        about: <text($maxNbChars = 200)>
         colors: Czarny, zielony
         email: <email()>                
     team10:
         name: Jaworzanka Rogów
         adress: Rogów
-        about: <text($maxNbChars = 2000)>
+        about: <text($maxNbChars = 200)>
         colors: Czarny, zielony
         email: <email()>    
 

@@ -14,6 +14,7 @@ class PagesController extends BaseController
      *
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Symfony\Component\Form\Exception\AlreadySubmittedException
      * @Route("/contact", name="blog_pages_contact")
      */
     public function contactAction(Request $request)
@@ -26,7 +27,7 @@ class PagesController extends BaseController
             $form->setData(
                 [
                     'name' => $User->getUsername(),
-                    'email' => $User->getEmail(),
+                    'email' => $User->getEmail()
                 ]
             );
         }
@@ -82,6 +83,6 @@ class PagesController extends BaseController
      */
     public function galleryAction()
     {
-        return $this->render('ClubBlogBundle:Pages:gallery.html.twig', array());
+        return $this->render('ClubBlogBundle:Pages:gallery.html.twig');
     }
 }

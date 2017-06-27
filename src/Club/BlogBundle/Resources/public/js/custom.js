@@ -78,7 +78,6 @@ $(document).ready(function () {
         {
             load: 'superfish.js',
             complete: function () {
-                alert(1);
                 console.log(kopa_variable.url.template_directory_uri);
                 //Main menu
                 $('.top-menu').superfish({});

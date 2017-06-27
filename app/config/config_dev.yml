@@ -17,10 +17,11 @@ monolog:
             type: stream
             path: "%kernel.logs_dir%/%kernel.environment%.log"
             level: debug
-            channels: [!event]
+            channels: '!event'
         console:
             type:   console
-            channels: [!event, !doctrine]
+            process_psr_3_messages: true
+            channels: ['!event', '!doctrine', '!console']
 hautelook_alice:
     db_drivers:
     locale: pl_PL
