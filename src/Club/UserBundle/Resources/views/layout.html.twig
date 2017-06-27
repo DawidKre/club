@@ -60,7 +60,7 @@
                                 &nbsp;|&nbsp;
                             <span itemtype="http://data-vocabulary.org/Breadcrumb" itemscope="">
                                 <a itemprop="url" class="current-page">
-                                    {#<span itemprop="title">{{ pageTitle }}</span>#}
+                                    {#<span itemprop="title">{{ attribute(pageTitle, '')}}</span>#}
                                 </a>
                             </span>
                             </div>
@@ -68,7 +68,7 @@
                         <div class="widget-area-1">
                             <!-- widget -->
                             <div class="widget ">
-                                {#<h3 class="widget-title style12">{{ pageTitle }}<span class="ttg"></span></h3>#}
+                                {#<h3 class="widget-title style12">{{ attribute(pageTitle, '321')}}<span class="ttg"></span></h3>#}
                                 <ul class="clearfix">
                                 </ul>
                             </div>

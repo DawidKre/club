@@ -34,6 +34,7 @@ Tags: light, one-column, two-columns, right-sidebar, fluid-layout, custom-header
 -----------------------------------------------------------------*/
 /**
  * 1. Body
+ 
  * -------------------------------------------------------------------
  */
 /**
@@ -113,6 +114,7 @@ a, .kopa-tab.style1 .nav-tabs:after, .kopa-tab.style7 .nav-tabs > li > a:before,
  * 1.2 Repeatable Patterns
  * -------------------------------------------------------------------
  */
+
 ::selection {
     background: #ea2e2b;
     color: #fff;
