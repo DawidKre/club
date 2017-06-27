@@ -11218,9 +11218,9 @@ $(document).ready(function () {
 
     Modernizr.load([
         {
-            load: 'superfish.js',
+            load: '/js/superfish.js',
             complete: function () {
-                console.log(kopa_variable.url.template_directory_uri);
+                // console.log(kopa_variable.url.template_directory_uri);
                 //Main menu
                 $('.top-menu').superfish({});
 
@@ -11235,7 +11235,7 @@ $(document).ready(function () {
 
     Modernizr.load([
         {
-            load: 'superfish.js',
+            load: '/js/superfish.js',
             complete: function () {
 
                 var r_ul = $('.kopa-main-nav .sf-menu');
@@ -11326,7 +11326,7 @@ $(document).ready(function () {
      ============================================================ */
 
     Modernizr.load([{
-        load: ['owl.carousel.js'],
+        load: ['/js/owl.carousel.js'],
         complete: function () {
 
             var owl1 = $(".owl-carousel-1");
@@ -11459,7 +11459,7 @@ $(document).ready(function () {
 
     if ($('.kopa-sync-carousel-widget').length > 0) {
         Modernizr.load([{
-            load: kopa_variable.url.template_directory_uri + 'js/owl.carousel.js',
+            load: '/' + kopa_variable.url.template_directory_uri + 'js/owl.carousel.js',
             complete: function () {
                 var sync1 = $(".kopa-sync-carousel-widget .sync1");
                 var sync2 = $(".kopa-sync-carousel-widget .sync2");
@@ -11544,7 +11544,7 @@ $(document).ready(function () {
 
     if ($('.kopa-sync-carousel-2-widget').length > 0) {
         Modernizr.load([{
-            load: kopa_variable.url.template_directory_uri + 'js/owl.carousel.js',
+            load: '/' + kopa_variable.url.template_directory_uri + 'js/owl.carousel.js',
             complete: function () {
                 var sync3 = $(".kopa-sync-carousel-2-widget .sync3");
                 var sync4 = $(".kopa-sync-carousel-2-widget .sync4");
@@ -11626,7 +11626,7 @@ $(document).ready(function () {
 
     if ($('.kopa-sync-2-carousel-widget').length > 0) {
         Modernizr.load([{
-            load: kopa_variable.url.template_directory_uri + 'js/owl.carousel.js',
+            load: '/' + kopa_variable.url.template_directory_uri + 'js/owl.carousel.js',
             complete: function () {
                 var sync5 = $(".kopa-sync-2-carousel-widget .sync5");
                 var sync6 = $(".kopa-sync-2-carousel-widget .sync6");
@@ -11729,7 +11729,7 @@ $(document).ready(function () {
 
     Modernizr.load([
         {
-            load: [kopa_variable.url.template_directory_uri + 'js/excanvas.compiled.js', kopa_variable.url.template_directory_uri + 'js/excanvas.js', kopa_variable.url.template_directory_uri + 'js/jquery.easypiechart.js'],
+            load: ['/' + kopa_variable.url.template_directory_uri + 'js/excanvas.compiled.js', '/' + kopa_variable.url.template_directory_uri + 'js/excanvas.js', '/' + kopa_variable.url.template_directory_uri + 'js/jquery.easypiechart.js'],
             complete: function () {
 
                 var jQuerychart = $('.chart');
@@ -11817,7 +11817,7 @@ $(document).ready(function () {
     if ($('.scroll-slider').length > 0) {
         Modernizr.load([
             {
-                load: [kopa_variable.url.template_directory_uri + 'js/mCustomScrollbar.js', kopa_variable.url.template_directory_uri + 'js/jquery.mousewheel.min.js'],
+                load: ['/' + kopa_variable.url.template_directory_uri + 'js/mCustomScrollbar.js', '/' + kopa_variable.url.template_directory_uri + 'js/jquery.mousewheel.min.js'],
                 complete: function () {
 
                     $(".scroll-slider").each(function () {
@@ -11914,7 +11914,7 @@ $(document).ready(function () {
      ============================================================ */
 
     Modernizr.load([{
-        load: 'js/jquery.carouFredSel-6.2.1.js',
+        load: '/js/jquery.carouFredSel-6.2.1.js',
         complete: function () {
 
             var t_w = 0;
@@ -11957,7 +11957,7 @@ $(document).ready(function () {
     if ($('.contact-form').length > 0) {
         Modernizr.load([
             {
-                load: [kopa_variable.url.template_directory_uri + 'js/jquery.form.js', kopa_variable.url.template_directory_uri + 'js/jquery.validate.js'],
+                load: ['/' + kopa_variable.url.template_directory_uri + 'js/jquery.form.js', '/' + kopa_variable.url.template_directory_uri + 'js/jquery.validate.js'],
                 complete: function () {
                     $('.contact-form').validate({
                         // Add requirements to each of the fields
@@ -11984,7 +11984,8 @@ $(document).ready(function () {
                         messages: {
                             name: {
                                 required: "Please enter your name.",
-                                minlength: $.format("At least {0} characters required.")
+                                // minlength: $.format("At least {0} characters required.")
+                                minlength: "At least {0} characters required."
                             },
                             email: {
                                 required: "Please enter your email.",
@@ -11996,7 +11997,8 @@ $(document).ready(function () {
                             },
                             message: {
                                 required: "Please enter a message.",
-                                minlength: $.format("At least {0} characters required.")
+                                // minlength: $.format("At least {0} characters required.")
+                                minlength: "At least {0} characters required."
                             }
                         },
                         // Use Ajax to send everything to processForm.php
@@ -12022,7 +12024,7 @@ $(document).ready(function () {
     if ($('#comments-form').length > 0) {
         Modernizr.load([
             {
-                load: [kopa_variable.url.template_directory_uri + 'js/jquery.form.js', kopa_variable.url.template_directory_uri + 'js/jquery.validate.js'],
+                load: ['/' + kopa_variable.url.template_directory_uri + 'js/jquery.form.js', '/' + kopa_variable.url.template_directory_uri + 'js/jquery.validate.js'],
                 complete: function () {
                     $('#comments-form').validate({
                         // Add requirements to each of the fields
@@ -12091,7 +12093,7 @@ $(document).ready(function () {
 
     if ($('.kopa-map').length > 0) {
         Modernizr.load([{
-            load: [kopa_variable.url.template_directory_uri + 'js/gmaps.js'],
+            load: ['/' + kopa_variable.url.template_directory_uri + 'js/gmaps.js'],
             complete: function () {
                 var id_map = $('.kopa-map').attr('id');
                 var lat = parseFloat($('.kopa-map').attr('data-latitude'));
@@ -12125,7 +12127,7 @@ $(document).ready(function () {
     var map1;
     if ($('.kopa-map-1').length > 0) {
         Modernizr.load([{
-            load: [kopa_variable.url.template_directory_uri + 'js/gmaps.js'],
+            load: ['/' + kopa_variable.url.template_directory_uri + 'js/gmaps.js'],
             complete: function () {
                 var id_map = $('.kopa-map-1').attr('id');
                 var lat = parseFloat($('.kopa-map-1').attr('data-latitude'));
@@ -12161,7 +12163,7 @@ $(document).ready(function () {
      ============================================================ */
 
     Modernizr.load([{
-        load: [kopa_variable.url.template_directory_uri + 'js/masonry.pkgd.js', kopa_variable.url.template_directory_uri + 'js/imagesloaded.js'],
+        load: ['/' + kopa_variable.url.template_directory_uri + 'js/masonry.pkgd.js', '/' + kopa_variable.url.template_directory_uri + 'js/imagesloaded.js'],
         complete: function () {
 
             var jQuerymasonry1 = $('.kopa-masonry-wrap');
@@ -12241,7 +12243,7 @@ $(document).ready(function () {
     if ($('.article-list-5').length > 0) {
 
         Modernizr.load([{
-            load: [kopa_variable.url.template_directory_uri + 'js/jquery.matchHeight.js'],
+            load: ['/' + kopa_variable.url.template_directory_uri + 'js/jquery.matchHeight.js'],
             complete: function () {
 
                 var post_1 = $('.cl-item');
@@ -12260,7 +12262,7 @@ $(document).ready(function () {
      =============================================== */
 
     Modernizr.load([{
-        load: [kopa_variable.url.template_directory_uri + 'js/jquery.navgoco.js'],
+        load: ['/' + kopa_variable.url.template_directory_uri + 'js/jquery.navgoco.js'],
         complete: function () {
 
             $(".main-menu-mobile").navgoco({
@@ -12287,7 +12289,7 @@ $(document).ready(function () {
      =============================================== */
 
     Modernizr.load([{
-        load: [kopa_variable.url.template_directory_uri + 'js/countdown.js'],
+        load: ['/' + kopa_variable.url.template_directory_uri + 'js/countdown.js'],
         complete: function () {
 
 
@@ -12311,7 +12313,7 @@ $(document).ready(function () {
     if (jQuery('.kopa-slider-ip').length > 0) {
 
         Modernizr.load([{
-            load: [kopa_variable.url.template_directory_uri + 'js/bootstrap-slider.min.js'],
+            load: ['/' + kopa_variable.url.template_directory_uri + 'js/bootstrap-slider.min.js'],
             complete: function () {
                 jQuery('.kopa-slider-ip').slider({
                     tooltip: "show"
@@ -12326,7 +12328,7 @@ $(document).ready(function () {
      ============================================================ */
 
     Modernizr.load([{
-        load: [kopa_variable.url.template_directory_uri + 'js/waypoints.js', kopa_variable.url.template_directory_uri + 'js/waypoints-sticky.js'],
+        load: ['/' + kopa_variable.url.template_directory_uri + 'js/waypoints.js', '/' + kopa_variable.url.template_directory_uri + 'js/waypoints-sticky.js'],
         complete: function () {
             jQuery('.kopa-header-middle').waypoint('sticky');
         }
@@ -30068,7 +30070,7 @@ if (typeof Object.create !== "function") {
 (function () {
     (function (t, n) {
         if (typeof define === "function" && define.amd) {
-            return define(["jquery", "waypoints"], n)
+            return define(["jquery", "web/public/js/waypoints"], n)
         } else {
             return n(t.jQuery)
         }
