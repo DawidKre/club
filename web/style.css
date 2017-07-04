@@ -36,6 +36,9 @@ Tags: light, one-column, two-columns, right-sidebar, fluid-layout, custom-header
  * 1. Body
  * -------------------------------------------------------------------
  */
+body {
+    background-color: blue;
+}
 /**
  * 1.1 Sass
  * -------------------------------------------------------------------
@@ -8163,3 +8166,5 @@ address {
     width: 280px; }
     .kopa-search-box .search-form .search-text {
       width: 200px; } }
+
+

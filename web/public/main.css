@@ -10258,6 +10258,7 @@ address {
 * -------------------------------------------------------------------
 */
 @media screen and (max-width: 1290px) {
+
     .wrapper, .owl-carousel-10 .entry-item .entry-content, .owl-carousel-11 .entry-item .entry-content {
         width: 980px;
     }
@@ -10337,6 +10338,23 @@ address {
     .kopa-sync-carousel-widget.style1 .sync1 .owl-controls, .kopa-sync-carousel-widget.style1 .sync5 .owl-controls, .kopa-sync-carousel-widget.style1 .owl-carousel-12 .owl-controls, .sync5 .owl-controls {
         width: 980px;
         margin-left: -490px;
+    }
+
+    .sync1 .owl-controls .owl-buttons div.owl-prev, .sync5 .owl-controls .owl-buttons div.owl-prev, .owl-carousel-12 .owl-controls .owl-buttons div.owl-prev {
+        left: 0;
+    }
+
+    .sync1 .owl-controls .owl-buttons div.owl-next, .sync5 .owl-controls .owl-buttons div.owl-next, .owl-carousel-12 .owl-controls .owl-buttons div.owl-next {
+        right: 0;
+        left: auto;
+    }
+
+    .kopa-charts-widget .widget-content ul .t-col.width1 {
+        padding: 6px 2px;
+    }
+
+    .t-col {
+        font-size: 12px;
     }
 }
 

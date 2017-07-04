@@ -12260,13 +12260,13 @@ $(document).ready(function () {
     /* ============================================
      18. Mobile-menu
      =============================================== */
-
+    $(".main-menu-mobile").hide();
     Modernizr.load([{
         load: ['/' + kopa_variable.url.template_directory_uri + 'js/jquery.navgoco.js'],
         complete: function () {
 
             $(".main-menu-mobile").navgoco({
-                accordion: true
+                accordion: false
             });
             $(".main-menu-mobile").find(".sf-mega").removeClass("sf-mega").addClass("sf-mega-mobile");
             $(".main-menu-mobile").find(".sf-mega-section").removeClass("sf-mega-section").addClass("sf-mega-section-mobile");
